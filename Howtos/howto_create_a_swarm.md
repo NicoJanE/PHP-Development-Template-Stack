@@ -4,12 +4,11 @@ _Copyright (c) 2024 Nico Jan Eelhart_
 _This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._
 <br><br>
 
-# what
-This describes how to create a Docker Swarm. These instructions are intended for developers how wants to experiment and learn how to deal with a Docker Swarm.
-To create and use a development container see the document: ***howto_create_A_dev_container.md***
+# What
+This describes how to create a Docker Swarm of this PHP container. These instructions are intended for developers how wants to experiment and learn how to deal with a Docker Swarm. To create and use a development container see the document: ***howto_create_A_dev_container.md***
 
 # Create Multipass docker VM infrastructure(X (5) VMs) and Initialize the Swarm.
-
+We use Multipass for the different Virtual machines to hold the Docker Swarm.
 1. Make sure Multipass is installed, see: https://multipass.run/
 1. ***command***: ***./CreateDockerNodes.ps*** to create the, entered number of multipass Nodes (let's assume 5)
 1. Get the IP from one of the nodes (multipass ls)
@@ -44,8 +43,8 @@ option add the --no-cache option to force  a rebuild
 4. ***command***: docker images # it should be there
 
 ## Publish 
-You can skip this and use me image(eelhartn/apachephpweb) or continue and create your own
-Publish it the Docker Hub, this must be done so we can pull the image in the multipass VM manager node.
+You can skip this and use me image(eelhartn/apachephpweb) or continue, and create your own image and use that later on. 
+First publish it to the Docker Hub, this must be done so we can pull the image in the multipass VM manager node(s).
 1. ***command***: docker login with your docker login
 2. ***command***: docker image push [yourname]/apachephpweb
 ***Be aware*** the image is ***public*** by default, to make it private go to the web interface!
@@ -54,20 +53,20 @@ Publish it the Docker Hub, this must be done so we can pull the image in the mul
 # Use the Published image to deploy the Stack
     ^Note: Stack is another term for compose in case of a Docker Swarm^		
 
-to deploy the stack we need to have the **PhpWebService\app** directorie and the **PhpWebService\compose_apache_php_swarm.yml** available on the multipass virtual machine MANAGER nodes!
-Make sure the script ***mountcopy.ps1*** has run,  this will make sure  the app and shared files are available in:``` /home/ubuntu/src/ ```
-1. Check that the key differences(required for a Swarm) in the compose_apache_php_swarm.yml are made,which are(should be done):
-	- No **build** property but instead a **image** property that point to our image stored in the Docker hub
+To deploy the stack we need to have the **PhpWebService\app** directorie and the **PhpWebService\compose_apache_php_swarm.yml** available on the multipass virtual machine MANAGER nodes!
+Make sure the script ***mountcopy.ps1*** has run,  this will make sure  the app and shared files are available in:``` /home/ubuntu/src/ ``` at the node.
+1. Check that the key differences(required for a Swarm) in the compose_apache_php_swarm.yml are made, which are (should already be done):
+	- Most importantly there is NO **build** property but instead a **image** property that point to our image stored in the Docker hub
 	- Check also other none Swarm required properties, so that those make sense: service name, command(start-up app), ports... <br><br>
 1. When you did **not skip 'Create image'**  you will need tho change the image property in the file: ***compose_apache_php_swarm.yml*** so that it refers to your image!
 1. Login to docker Hub and make sure that the referenced image (compose_apache_python_swarm.yml) is public! 
 2. Execute the following commando's from the *directory:*<br> ***command***: ```cd /home/ubuntu/src/appname-service/``` from a manager VNode<br>***command***: ```docker stack deploy -c compose_apache_php_swarm.yml MyWebApp``` <br>
-This will use the compose_apache_php_swarm.yml file to retrieve the deployed image from the docker Hub and create a service MyWebApp<br>
-Checks:	<br>***command***: docker stack ls<br> ***command***: docker stack ps MyWebApp<br>      ***command***: docker stack services MyWebApp<br>***command***: docker service logs [service name previous CMD] # In case of errors<br>
+This will use the compose_apache_php_swarm.yml file to retrieve the deployed image from the docker Hub and create a service MyWebApp<br><br>
+Checks:	<br>***command***: docker stack ls<br> ***command***: docker stack ps MyWebApp<br>      ***command***: docker stack services MyWebApp<br>***command***: docker service logs [service name previous CMD] # In case of errors<br><br>
 To Open a docker shell in the stack use
 ***command***: docker ps								# Get the Container ID of (NOT from Master VNode! ?? us another admin node)
-***command***: docker exec -it [container ID] bash		# shell<br>
-**Try if your lucky** (otherwise proceed with 'Test the installation' below)
+***command***: docker exec -it [container ID] bash		# shell<br><br>
+**Now try if your lucky** (otherwise proceed with 'Test the installation' below)
 Enter(use ```multipass ls for``` ip addresses): <br> - [a VM IP address]:8071\index.html<br> - [a VM IP address]:8071\index.php<br> - [a VM IP address]:8071\phpinfo.php
 <br> *In my experienance when you get 'the forbidden' return page there are problems with the network between the host and the VM's*
 
@@ -123,6 +122,6 @@ try {
 This installation method use the declarative method to create the Swarm. this means 
 - No Dockerfile is used
 - The compose file has a few changes(because the dockerfile is not used)
-- More information see: http://pcne:8080/en/Personal/Docker/Create_A_Swarm_ 
+- More information see my personal WIKI: http://pcne:8080/en/Personal/Docker/Create_A_Swarm_ 
 
 

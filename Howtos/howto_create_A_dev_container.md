@@ -47,7 +47,7 @@ docker-compose -f compose_apache_php_cont.yml up -d --build --force-recreate
 Test if running with: http://localhost:8071/phpinfo.php
 
 
-### 1.2.1 Add PHPUnit to the image
+### 1.2.1 Add PHPUnit to the image (Add on)
 Optional you can add the PHPunit test framework to the image, after executing the commands in the previous paragraph execute  this command: ( again in the **[name]Service**  directory)  
 ```                                       
 PS D:\docker\Containers and swarm templates\PHP Development Template Stack\ApachePHPWebService> docker  compose -f compose_UnitTest_Addon.yml up -d  --remove-orphans --build --force-recreate
@@ -64,7 +64,7 @@ When this is done the following command should return the phpunit version (witho
 
 ```
 phpunit --version		# returns version phpunit
-composer -V				# returns vcersio composer
+composer -V			# returns vcersio composer
 ``` 
 
 Test if running with: http://localhost:8071/phpinfo.php
@@ -73,4 +73,4 @@ Test if running with: http://localhost:8071/phpinfo.php
 - Open VSC and press the docker Icon(left sidebar)
 - Right Click on your container and choose "Attache Visual Studio Code" a new VSC Window opens that is mapped the container
 - Choose: Open folder and select the folder ***/usr/local/apache2/htdocs***
-- For debug installation/configuration see the file: ***Steps to add Debugging.md***
+- For debug installation/configuration see the howto file: [howto_steps_for_debugging.md](./howtos/howto_steps_for_debugging.md)
