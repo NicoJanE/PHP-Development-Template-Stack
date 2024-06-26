@@ -1,0 +1,38 @@
+# This file is part of: PHP Development Template Stack 
+# Copyright (c) 2024 Nico Jan Eelhart
+#
+# This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
+#
+
+#	Extending/Chaining 
+#	Installs PHPunit test environment in the docker image:''
+#
+#   Some notes regarding chaining:
+#   NOTE 1
+#   - Bind mounts don't carry over, you have to specify them again
+#   - same counts for network and pretty much all items
+#   - So better to use a common compose file and let the other compose files extend from items(like we done see extends: )
+
+networks:
+  php_network:                              # Define a network
+
+
+services:
+  webserver-apache-php:                     # Same name as base file!
+    extends: 
+      file: compose_apache_php_cont.yml     # our base compose file, see NOTE 1
+      service: webserver-apache-php         # Same name as base file!
+    build:
+      context: .
+      dockerfile: Dockerfile_UnitTest_Addon
+    image: eelhart/apachephpweb:latest      # This name can be used to extend or chain this image.
+
+
+# End compose file 
+
+
+# build with:
+#
+# docker compose -f compose_UnitTest_Addon.yml up -d --remove-orphans
+# docker  compose -f compose_UnitTest_Addon.yml up -d  --remove-orphans --build --force-recreate
+

@@ -1,0 +1,49 @@
+# This file is part of: PHP Development Template Stack 
+# Copyright (c) 2024 Nico Jan Eelhart
+#
+# This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
+#
+
+
+networks:
+  php_network:                                 # Define a network
+
+
+volumes:
+  php-vol:
+
+  
+services:        
+        
+    webserver-apache-php:                       # Our Apache web server with install PHP and PHP-FPM
+        build:
+            context: .  
+            dockerfile: Dockerfile_Apache_PHP_cont
+        image: eelhart/apachephpweb:latest      # This name can be used to extend or chain this image.
+        ports:
+            - target: 80                        # Port used internally in the Docker container
+              published: 8071                   # Port to access from external (Host)        
+            - "9003:9003"  
+        networks:    
+            - php_network                       # Use this Network
+        volumes:
+            - ./shared-container-files/httpd.conf:/usr/local/apache2/conf/httpd.conf       # Bind mount custom Apache configuration file    
+            - ./shared-container-files/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf   # Bind mount custom Apache configuration file      
+            - ./shared-container-files/start.sh:/usr/local/apache2/start.sh                                # Bind mount for our virtual host which are called from httpd.conf 
+            - ./app:/usr/local/apache2/htdocs                                       # Bind mount the APP in htdocs which includes 'public'(is the www root)  
+        entrypoint: /bin/bash -c "sleep 1 && /usr/local/apache2/start.sh"           # STARTS the Apache2 server and PHP-FPM  CGI engine (you can also use:
+                                                                                    #       CMD"/usr/local/apache2/start.sh"   
+                                                                                    # in the docker file, or here.
+
+# --- END COMPOSE FILE ---
+
+
+# INSTRUCTIONS
+# To Start this container:
+# docker compose -f compose_apache_php_cont.yml.yml up -d
+# Or
+#              # FORCE a rebuild when config props are changed to avoid caching issues!!!!
+
+#
+#
+# 2024-06-21 18:48:23 /bin/bash: line 1: /usr/local/apache2/start.sh: No such file or directory

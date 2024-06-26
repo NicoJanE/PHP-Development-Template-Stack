@@ -1,0 +1,108 @@
+# This file is part of: PHP Development Template Stack 
+# Copyright (c) 2024 Nico Jan Eelhart
+#
+# This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
+#
+
+networks:
+    php_network:                       # Define a network
+
+volumes:
+  php-vol:
+
+services:    
+
+  web-front-end_phpmysql:               # This is how we named our service
+    image: eelhartn/apachephpweb        # Default registry image on Docker Hub, see my WIKI for alternative registry references
+#    command: python app.py             # The start-up command
+    deploy:
+      replicas: 1                       # Number of copies
+#       placement:
+#           constraints:
+#            - node.role == worker      # By default apps are deployed on worker and Manager(not recommend on production) node to prevent using  manager Uncomment this
+    ports:
+        - target: 80                    # Port used internally in the Docker container
+          published: 8071               # Port to access from external (Host)
+    networks:
+        - php_network                   # Use this Network
+    volumes:                            # See REMARK 1 below!  
+        - ./shared-container-files/httpd.conf:/usr/local/apache2/conf/httpd.conf                        # Bind mount custom Apache configuration file    
+        - ./shared-container-files/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf    # Bind mount custom Apache configuration file      
+        - ./shared-container-files/start.sh:/usr/local/apache2/start.sh                                 # Bind mount for our virtual host which are called from httpd.conf 
+        - ./app:/usr/local/apache2/htdocs                                                               # Bind mount the APP in htdocs which includes 'public'(is the www root)  
+    entrypoint: /bin/bash -c "sleep 30 && /usr/local/apache2/start.sh"                                   # STARTS the Apache2 server and PHP-FPM  CGI engine (you can use:
+                                                                                                        #       CMD"/usr/local/apache2/start.sh"   
+                                                                                                        # in the docker file, or here.
+
+
+# TODO REVIEW
+# REMARK 1  VOLUMES and Shared Files
+# BE-AWARE: This compose file, can not be called the same way as the 'compose_apache_php_cont.yml' file.
+#           while the volumes (- ./shared-container-files/) have the same layout these volumes must reside
+#           in a normal directory IN the VM container (none mounted)
+#
+#
+#   This because the volumes, in a swarm compose file, can not be defined with as source a 'mount bind endpoint targets'.
+#   directory, these files are not available when compose runs in the 'Docker swarm 1'
+#   environment inside a virtual machine(VMNode1). See EXAMPLE 1
+#  
+#   Long story short, the shared-container-files need to be copied to the  virtual machines(VM 1...VM 5)
+#   in a 'normal directory' (not a bind mount) from there compose can use them as volume source.
+#   For this reason we have a Power-shell script that those this for all our virtual machines, after 
+#   executing this script compose can use the shared files from: /home/ubuntu/scr/appname-service/
+#
+#   Make sure the scrip: ./mountcopy.ps1
+#   has been run!
+#
+#           EXAMPLE 1, I hope this helps
+#           ------------------------------------------------------------------------------------- 
+#           - HOSTS                                                                             -
+#           - Runs:    compose_apache_php_cont.yml                                              -                 
+#           - Has:  "./shared-container-files/httpd.conf:/usr/local/apache2/conf/httpd.conf"(*1)-
+#           -       mounts to /mnt/host in VM 1 (when "using compose_apache_php_cont") which    -
+#           -       okay in that case because VM 1 is also the docker development container     -
+#           -       where the docker files are executed(not using: Docker swarm 1)              -
+#           -                                                                                   - 
+#           -       But not when using a SWARM, the /mnt/host can not be used in that case      -                
+#           -       because it is a endpoint(target) of a bind mount, these files are not       -
+#           -       available when Compose runs in the 'Docker swarm 1' environment!            -
+#           -                                                                                   -
+#           -       for that reason we need to copy the files to:'/tmp/deploywebapp' first from -  
+#           -       there the files can be pick-up and used by 'compose_apache_php_swarm.yml'   -
+#           -       which runs in 'Docker swarm 1'                                              -
+#           -                                                                                   -
+#           -               ==========================================                          -
+#           -               = VM 1 Docker with mounts: /mnt/host(*1) =                          -
+#           -               =   /mnt/host(*1)                        =                          -   
+#           -               =   /tmp/deploywebapp(*2)                =                          -
+#           -               =                                        =                          -
+#           -               =        ++++++++++++++++++++++++        =                          -
+#           -               =        + Docker swarm 1       +        =                          -
+#           -               =        + - required files     +        =                          -
+#           -               =        +   destination        +        =                          -
+#           -               =        ++++++++++++++++++++++++        =                          -
+#           -               =                                        =                          -
+#           -               ==========================================                          -
+#           -               ...                                                                 -
+#           -               ==========================================                          -
+#           -               = VM 5 Docker with mounts: /mnt/host(*1) =                          -
+#           -               =   /mnt/host(*1)                        =                          -   
+#           -               =   /tmp/deploywebapp(*2)                =                          -
+#           -               =                                        =                          -
+#           -               =        ++++++++++++++++++++++++        =                          -
+#           -               =        + Docker swarm 3       +        =                          -
+#           -               =        + - required files     +        =                          -
+#           -               =        +   destination        +        =                          -
+#           -               =        ++++++++++++++++++++++++        =                          -
+#           -               =                                        =                          -
+#           -               ==========================================                          -
+#           -                                                                                   -
+#           ------------------------------------------------------------------------------------- 
+#        - type: bind
+#          source: /usr/nico/start.sh
+#          target: /usr/local/apache2/start34.sh
+#fails
+#        - type: bind
+#          source: /mnt/host/start.sh
+#          target: /usr/local/apache2/start34.sh
+          
