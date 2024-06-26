@@ -33,7 +33,6 @@ More documents can be found in the 'Howto" directory. it contains:
 2. Development container document: open [howto_create_A_dev_container.md](./Howtos/howto_create_A_dev_container.md) 
 3. Instructions to install and use other PHP versions: open [howto_install_other_PHP_versions](./Howtos/howto_install_other_PHP_versions.md)
 4. Instructions to configure/install debugging see: [howto_steps_for_debugging.md](./Howtos/howto_steps_for_debugging.md)
-5. Instructions for creating this image see: open [howto_this_image_is_created.md](./Howtos/howto_this_image_is_created.md)
 
 
 # General usage suggestion
