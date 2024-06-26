@@ -13,7 +13,7 @@ This is a template Docker development/Swarm container for PHP developers. Origin
 
 1. Instructions for adding additional PHP versions
 
-1. Instructions for creating a development container 
+1. Instructions for creating a development container. 
 Use this for creating and starting a local container, for development and test work. 
 
 1. Instructions for configuring PHP debugging (Xdebug)
@@ -25,6 +25,8 @@ Use this for creating and starting a local container, for development and test w
 -- Making a Image required for the swarm
 -- Publishing the image to a registry (Docker Hub)
 -- Deploy the swarm service (pulling the image from docker hub)
+
+You can use this container to develop your PHP based application, a simple sample application is available in the directory: \ApachePHPWebService\app.
 
 
 # Where more information
