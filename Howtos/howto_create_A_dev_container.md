@@ -73,4 +73,4 @@ Test if running with: http://localhost:8071/phpinfo.php
 - Open VSC and press the docker Icon(left sidebar)
 - Right Click on your container and choose "Attache Visual Studio Code" a new VSC Window opens that is mapped the container
 - Choose: Open folder and select the folder ***/usr/local/apache2/htdocs***
-- For debug installation/configuration see the howto file: [howto_steps_for_debugging.md](./Howtos/howto_steps_for_debugging.md)
+- For debug installation/configuration see the howto file: [howto_steps_for_debugging.md](howto_steps_for_debugging.md)
