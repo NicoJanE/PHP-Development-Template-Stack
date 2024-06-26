@@ -38,7 +38,7 @@ More documents can be found in the 'Howto" directory. it contains:
 
 
 # General usage suggestion
-This is a Template example defined in the ***\docker\Containers and swarm templates\\*** folder. Me personal idea is to copy this directory to the local development programming language directory as an template (and customize it there when needed, it can then become a new version or a whole new template). In the copied template language directory you can then make a copy of the above defined template and implement your project from there.
+This is a Template example defined in the ***\docker\Containers and swarm templates\\*** folder. Me personal idea is to copy this directory to the local development programming language directory as an template (and customize it there when needed, it can then become a new version or a whole new template). From the copied template language directory you can then make a copy of the above defined template, in your project directory, and implement your project from there.
 
 Example :
 
