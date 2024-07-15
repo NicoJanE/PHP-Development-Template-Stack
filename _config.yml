@@ -1,0 +1,10 @@
+title: GitHub Preview PHP Stack
+description: Docker PHP Container
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-architect
+
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
+
+

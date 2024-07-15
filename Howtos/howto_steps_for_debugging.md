@@ -1,11 +1,15 @@
+---
+layout: default
+---  
+
 _This file is part of: PHP Development Template Stack_
 _Copyright (c) 2024 Nico Jan Eelhart_
 
 _This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._
 <br>
 
-# Preparing Docker Apache PHP image with Debug support
-When you want your application to support debugging, these are the instructions.
+# Adding debug support.
+When you want your application to support debugging, these are the instructions to install **XDebug** to work together with **Visual Studio Code**
 
 ## 1.1 How to get the right XDebug files
 - ***php -v*** to get php version
@@ -18,11 +22,15 @@ When you want your application to support debugging, these are the instructions.
 -- php --version ***Should now also state 'with Xdebug'*** then it is success!
 -- Restart the docker container
 
+----
+
 ## 1.2 Configure php.ini 
 - Get active php.ini location 
 -- http://localhost:8071/phpinfo.php and look for php.ini (currently 	/etc/php/8.2/fpm/php.ini)
 - Add the following to the php.ini (on the bottom) use ***nano php.ini***
-```; Enable Xdebug extension module
+
+```
+; Enable Xdebug extension module
 zend_extension=xdebug.so
 
 [xdebug]
@@ -41,6 +49,8 @@ xdebug.log = /tmp/xdebug.log
 - In php.ini Set the 'xdebug.mode=off' 
 - In php.ini Set the 'xdebug.start_with_request = no' 
 when this is done debugging is ignored and you should see a response.
+
+----
 
 ## 1.3 Config VSC
 - add 'PHP Debug' extentsion

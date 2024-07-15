@@ -19,7 +19,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 		
 	
-# 2) INCLUDE repositories for other PHP versions
+# 2) Included repositories for other PHP versions
 # Make sure dependencies satisfy (Install dependencies)
 RUN apt update && \ 
 	apt install -y lsb-release apt-transport-https ca-certificates wget	
