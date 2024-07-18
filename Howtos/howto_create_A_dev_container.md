@@ -1,5 +1,9 @@
 ---
-layout: default
+layout: default_c
+RefPages:
+ - howto_create_a_swarm
+ - howto_install_other_PHP_versions
+ - howto_steps_for_debugging
 --- 
 
 

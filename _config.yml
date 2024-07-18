@@ -5,6 +5,28 @@ google_analytics:
 theme: jekyll-theme-architect
 
 plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
+- jekyll-remote-theme 
+- jekyll-toc # Add this plugin for TOC generation
+
+toc:
+  toc: true
+  toc_label: "Table of Contents"
+  toc_icon: "cog" # corresponding Font Awesome icon name without the fa-prefix
+  toc_levels: "1..3" # which heading levels to include in the TOC
 
 
+# Add this variable to your _config, it indicates the directory where the other Mark 
+# Down(MD) files can be found, so that Links in the left side bar can be created to these 
+# files. The '*.md' files will use this variable to automatic append to the links to the page.
+#
+# Note that to make the links in the left content page work you have to define theme 
+# (in order) to the top of the markdown file, like:
+#
+# ---
+# layout: default-c                         # Use this custom template layout!
+# RefPage: howto_create_A_dev_container     
+# RefPage: howto_create_A_dev_container     #'RefPage' indicates a link page displayed 
+#                                           # in the left content pane.
+# ---
+#
+BaseDir: /Howtos

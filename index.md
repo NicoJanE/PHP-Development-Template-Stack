@@ -1,14 +1,21 @@
 ---
-layout: default
+layout: default_c
+RefPages:
+ - howto_create_A_dev_container
+ - howto_create_a_swarm
+ - howto_install_other_PHP_versions
+ - howto_steps_for_debugging
 --- 
 
+<small>
 _This file is part of: **PHP Development Template Stack**_
 _Copyright (c) 2024 Nico Jan Eelhart_
 _This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._
+</small>
 <br>
 
  
-# What
+# What2
 This is a template Docker development/Swarm container for PHP developers. Originally intended for my personal use, so a warning: this project may contain some additional related documentation instructions and remarks which were for my own documentation, so some subjects may be overstated. However, it may also be useful for others. It contains:
 
 

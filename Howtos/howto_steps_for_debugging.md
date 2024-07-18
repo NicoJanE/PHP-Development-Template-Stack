@@ -1,6 +1,10 @@
 ---
-layout: default
----  
+layout: default_c
+RefPages:
+ - howto_create_A_dev_container
+ - howto_create_a_swarm
+ - howto_install_other_PHP_versions 
+--- 
 
 _This file is part of: PHP Development Template Stack_
 _Copyright (c) 2024 Nico Jan Eelhart_
