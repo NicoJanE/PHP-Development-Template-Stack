@@ -41,7 +41,7 @@
           <ul class="sq">
           	{% if page.name == "index.md" %}
 				{% for RefPage in page.RefPages %}			  
-					<li class="sm1"><a href="{{site.BaseDir}}/{{RefPage}}.html">{{ RefPage }}</a> </li>			
+					<li class="sm1"><a href="./{{site.BaseDir}}/{{RefPage}}.html">{{ RefPage }}</a> </li>			
 				{% endfor %}			
 			{% else %}
 				{% for RefPage in page.RefPages %}			  
