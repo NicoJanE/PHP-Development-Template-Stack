@@ -1,17 +1,19 @@
 ---
 layout: default_c
 RefPages:
- - howto_create_a_swarm
- - howto_install_other_PHP_versions
- - howto_steps_for_debugging
+ - Howto_create_A_dev_container
+ - Howto_create_a_swarm
+ - Howto_install_other_PHP_versions
+ - Howto_steps_for_debugging
 --- 
 
 
-_This file is part of: PHP Development Template Stack_
-_Copyright (c) 2024 Nico Jan Eelhart2_
-
+<small>
+_This file is part of: **PHP Development Template Stack**_
+_Copyright (c) 2024 Nico Jan Eelhart_
 _This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._
-<br><br>
+</small>
+<br><br><br>
 
 # 1. Create and start a simple developer container
 This section describes how to start the PHP developer container. If you want to experiment with a swarm (create, initialize, and run different containers), refer to the document: [***How to Create a Swarm***](Howto_Create_A_Swarm)
