@@ -1,10 +1,10 @@
 ---
 layout: default_c
 RefPages:
- - Howto_create_A_dev_container
- - Howto_create_a_swarm 
- - Howto_install_other_PHP_versions
- - Howto_steps_for_debugging
+ - howto_create_a_dev_container
+ - howto_create_a_swarm 
+ - howto_install_other_PHP_versions
+ - howto_steps_for_debugging
 --- 
 
 <small>
