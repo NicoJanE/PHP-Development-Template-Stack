@@ -129,3 +129,27 @@ a.button small {
   display: block;
   font-size: 11px;
 }
+
+
+
+.summary-icon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent; /* Adjust size as needed */
+  border-bottom: 5px solid transparent; /* Adjust size as needed */
+  border-left: 8px solid #8b5e3c; /* Color and size for the filled triangle */
+  margin-right: 5px; /* Space between the triangle and the text */
+  vertical-align: middle; /* Aligns the triangle with the text */
+}
+
+
+.clickable-summary {
+  cursor: pointer;
+/*  color: #800020; */
+  color: #8b5e3c;
+  
+  font-family: "Architects Daughter", "Helvetica Neue", Helvetica, Arial, serif;
+  font-style: italic; /* Italicize the text */
+  font-size:15px
+}
