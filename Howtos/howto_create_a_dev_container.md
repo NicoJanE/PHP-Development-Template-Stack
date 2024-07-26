@@ -16,7 +16,7 @@ _This source code is licensed under the MIT License found in the  'LICENSE.md' f
 <br><br><br>
 
 # 1. Create and start a PHP developer container
-This section describes how to start the PHP developer container. If you want to experiment with a swarm (create, initialize, and run different containers), refer to the document: [***How to Create a Swarm***](Howto_Create_A_Swarm)
+This section describes how to create and start the Docker PHP container. If you want to experiment with a swarm (create, initialize, and run different containers), refer to the document: [***How to Create a Swarm***](Howto_Create_A_Swarm)
 
 <details>  
   <summary class="clickable-summary">
@@ -58,10 +58,10 @@ This section creates and start the PHP container in docker Desktop.
 <details>  
   <summary class="clickable-summary">
   <span  class="summary-icon"></span> 
-  **Side note**: Base Project from Template
+  **Side note**: Create Project from Template
   </summary> 	<!-- On same line is failure, Don't indent the following Markdown lines!  -->
   
->### Base Project from Template
+>### Create Project from Template
 >>  <small> ***Skipp this if you known how to deal with copy\customize docker files*** </small> <br>
 >
 > To adapt the template directory for your project, follow these steps. This guide assumes you’re using the React stack; if you’re working with a different stack (e.g., PHP, Rust), simply replace “React” with the stack name your are using.s
