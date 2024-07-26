@@ -41,7 +41,7 @@ You can use this container to develop your PHP based application, a simple sampl
 
 # Where more information
 More documents can be found in the 'Howto" directory. it contains:
-1. Development container document: open [how to create a development container](./Howtos/howto_create_A_dev_container) 
+1. Development container document: open [how to create a development container](./Howtos/howto_create_a_dev_container) 
 2. Swarm document: open [how to create a swarm of this container](./Howtos/howto_create_a_swarm)
 3. Instructions to install and use other PHP versions: open [how to install other PHP versions](./Howtos/howto_install_other_PHP_versions)
 4. Instructions to configure/install debugging see: [how to include debugging](./Howtos/howto_steps_for_debugging)
