@@ -56,8 +56,17 @@
 					{% else %}	
 						<li class="sm1"><a href="./{{RefPage}}.html">{{ RefPage }} </a> </li>			
 					{% endif %}	
-				{% endfor %}						
-			{% endif %}				  				
+				{% endfor %}													
+			{% endif %}			
+
+			<!-- Add link to discussion if exists -->	
+			{% if site.repository_name %}
+			  <li class="sm1"><a href="https://github.com/{{ site.repository_owner }}/{{ site.repository_name }}/discussions">Discussions</a></li>
+			{% else %}
+			  <li class="sm1 disabled"><a class="disabled"  href="#">Discussions (Not available)</a></li>
+			{% endif %}
+
+			
           </ul>
 		  <!-- Create the relevant HTML links for the left panel (END) -->
         </nav>
