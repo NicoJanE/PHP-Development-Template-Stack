@@ -47,24 +47,25 @@ More documents can be found in the 'Howto" directory. it contains:
 4. Instructions to configure/install debugging see: [how to include debugging](./Howtos/howto_steps_for_debugging)
 <br>
 
-----
-
-### Me personal folder concept structure
-The containers are **maintained only here**. After creation or updating of the container, the container is copy to the program language folder inside the   **\_docker-template** folder. From there it can be used in projects, example:
-
-<small style="display: block; margin-bottom: -18px;"><b><i>Folder concept</i></b></small>
-
-|**language**| **Copy to Template Location** | **Us at Project Location**|
-|:--------| :-------------- | :-------------------- |
-|PHP    | \Php\\_docker-template\ 		| \Php\Projects\projectX |
-|Python  | \Python\\_docker-template\ 	| \Python\Projects\ProjectY |
-
-<small><i>Check the version of the template in the 'README.md' (root)</i></small> <br><br>
-
-
-> *Remark:*{: style="color: Grey;font-size:13px; "} <br>
-> <small>Of course, you may change the container docker templates files for specific reasons but do this than in the specific project folder! When a change is generic it should be added (merged) into the development container here</small>
-
+<details closed>  
+  <summary class="clickable-summary">
+  <span  class="summary-icon"></span> 
+  **Side note**: Personal maintenance instructions
+  </summary> 	<!-- On same line is failure, Don't indent the following Markdown lines!  -->
+  
+>### Personal maintenance instructions
+>The template containers are **maintained** only in the **DTS**. I copy these to a project directory and customize them there for the project. If the customization is generic, I will merge it into the DTS template project
+>
+> <small style="display: block; margin-bottom: -18px;"><b><i>Personal project structure</i></b></small> 
+>
+>  <small> **Docker-Template-Stacks (DTS)**</small> | <small> **Project Location** </small> | 
+> :-------------- | :-------------------- |
+> <small>DTS\PHP Development Template Stack\\ </small> | <small> \Php\Projects\projectX  </small>
+> <small>DTS\Rust Template Stack\\ </small> 	| <small> \Rust\Projects\ProjectY </small>
+>
+><br>
+> *Update:*{: style="color: Grey;font-size:13px; "} <small> these template central!</small>
+</details>
 
 <!--
 <br><br><br>
