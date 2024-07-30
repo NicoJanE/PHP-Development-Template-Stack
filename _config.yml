@@ -2,7 +2,7 @@
 #
 
 title: <font size="6"><span style="color:#FFD700">D</span>ocker <span style="color:#FFA500">T</span>emplate <span style="color:#FF7F50">S</span>tack PHP </font>
-description: <b><i><font size="3">A Docker container for PHP projects</span></font></i></b>
+description: <b><i><font size="3">A DTS container for PHP projects</span></font></i></b>
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-architect
@@ -11,6 +11,10 @@ theme: jekyll-theme-architect
 repository_owner: NicoJanE                          # kind of fixed
 repository_name: PHP-Development-Template-Stack     # Update this(repository name) if discussions are enabled in GitHub. When Empty it will state 'no Discussions'
 
+home_site_name: 
+    - DTS
+home_site_url: 
+    - https://nicojane.github.io/Docker-Template-Stacks-Home
 
 
 plugins:
