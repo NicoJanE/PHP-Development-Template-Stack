@@ -31,6 +31,7 @@ services:
             - ./shared-container-files/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf   # Bind mount custom Apache configuration file      
             - ./shared-container-files/start.sh:/usr/local/apache2/start.sh                                # Bind mount for our virtual host which are called from httpd.conf 
             - ./app:/usr/local/apache2/htdocs                                       # Bind mount the APP in htdocs which includes 'public'(is the www root)  
+            - ./shared-host:/shared-host                                            # General Bind Mount for shared files between host <> container for backups and others
         entrypoint: /bin/bash -c "sleep 1 && /usr/local/apache2/start.sh"           # STARTS the Apache2 server and PHP-FPM  CGI engine (you can also use:
                                                                                     #       CMD"/usr/local/apache2/start.sh"   
                                                                                     # in the docker file, or here.
