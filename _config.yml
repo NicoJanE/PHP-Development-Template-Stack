@@ -13,8 +13,10 @@ repository_name: PHP-Development-Template-Stack     # Update this(repository nam
 
 home_site_name: 
     - DTS
+    - WSL
 home_site_url: 
     - https://nicojane.github.io/Docker-Template-Stacks-Home
+    - https://nicojane.github.io/WSL-Template-Stacks-Home
 
 
 plugins:
