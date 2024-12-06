@@ -39,6 +39,9 @@ Use this for creating and starting a local container, for development and test w
 
 You can use this container to develop your PHP based application, a simple sample application is available in the directory: \ApachePHPWebService\app. Or use it to test the docker swarm functionality.
 
+> **For the first stable release, use the release/1.0 template branch**
+
+
 
 # Where more information
 More documents can be found in the 'Howto" directory. it contains:
