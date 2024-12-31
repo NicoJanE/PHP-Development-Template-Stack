@@ -27,14 +27,12 @@ services:
         networks:    
             - php_network                       # Use this Network
         volumes:
-            - ./shared-container-files/httpd.conf:/usr/local/apache2/conf/httpd.conf       # Bind mount custom Apache configuration file    
-            - ./shared-container-files/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf   # Bind mount custom Apache configuration file      
-            - ./shared-container-files/start.sh:/usr/local/apache2/start.sh                                # Bind mount for our virtual host which are called from httpd.conf 
             - ./app:/usr/local/apache2/htdocs                                       # Bind mount the APP in htdocs which includes 'public'(is the www root)  
             - ./shared-host:/shared-host                                            # General Bind Mount for shared files between host <> container for backups and others
-        entrypoint: /bin/bash -c "sleep 1 && /usr/local/apache2/start.sh"           # STARTS the Apache2 server and PHP-FPM  CGI engine (you can also use:
-                                                                                    #       CMD"/usr/local/apache2/start.sh"   
-                                                                                    # in the docker file, or here.
+        stdin_open: true                                                            # Keep STDIN open for `docker exec -it`
+        tty: true
+        command: ["/bin/bash", "/usr/local/apache2/start.sh"]                       # Run the custom script
+
 
 # --- END COMPOSE FILE ---
 
@@ -44,7 +42,3 @@ services:
 # docker compose -f compose_apache_php_cont.yml.yml up -d
 # Or
 #              # FORCE a rebuild when config props are changed to avoid caching issues!!!!
-
-#
-#
-# 2024-06-21 18:48:23 /bin/bash: line 1: /usr/local/apache2/start.sh: No such file or directory

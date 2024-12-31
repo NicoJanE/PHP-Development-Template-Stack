@@ -8,13 +8,15 @@
 echo "Starting and running the script for running Apache2 with PHP in the background"
 
 /usr/sbin/php-fpm8.2 -F & 
+# Use other PHP version FPM
 # /usr/sbin/php-fpm5.6 -F & 
 
 # No clue why 'apache2ctl 'is not in the image anymore :(
-# /usr/sbin/apache2ctl -f /usr/local/apache2/conf/httpd.conf -D FOREGROUND\n
-/usr/local/apache2/bin/httpd -f /usr/local/apache2/conf/httpd.conf -D FOREGROUND\n
+    # /usr/sbin/apache2ctl -f /usr/local/apache2/conf/httpd.conf -D FOREGROUND\n
 
-echo "End Apache2 with PHP startup script"
+# WARNING
+# Must run in foreground to be primary process in docker!, otherwise communication between PHP-FPM and Apache may break
+/usr/local/apache2/bin/httpd -f /usr/local/apache2/conf/httpd.conf -D FOREGROUND
 
-# Keep script running
-tail -f /dev/null
+
+echo "Apache2 PHP startup script is executing"
