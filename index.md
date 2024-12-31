@@ -17,18 +17,14 @@ _This source code is licensed under the MIT License found in the  'LICENSE.md' f
 <br>
  
 # What
-This is a template Docker development/Swarm container for PHP developers. Originally intended for my personal use, so a warning: this project may contain some additional related documentation instructions and remarks which were for my own documentation, so some subjects may be overstated. However, it may also be useful for others. It contains:
+This is a template Docker development/Swarm container for PHP developers. When you want to use this as a development template, for your docker PHP project (including composer and PHPUnit) you can use the following [quick setup reference](quick-setup)
 
 
-1. Debian container with: Apache, PHP, PHP-FPM (CGI gateway), PHPUnit, Codeception (***TODO  AddOn***).
-
+1. Debian container with: Apache, PHP, PHP-FPM (CGI gateway), PHPUnit, Codeception (***TODO  AddOn***)
 1. Instructions for adding additional PHP versions
-
 1. Instructions for creating a development container. 
 Use this for creating and starting a local container, for development and test work. 
-
 1. Instructions for configuring PHP debugging (Xdebug)
-
 1. Instructions to create an (optional) Swarm, this involves: 
 - Installing Multipass, see [Multipass](https://multipass.run/) 
 - Creating multiple Virtual Machines with Multipass (needed for the swarm) 
