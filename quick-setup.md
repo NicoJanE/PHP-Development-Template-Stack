@@ -13,7 +13,7 @@ _This source code is licensed under the MIT License found in the  'LICENSE.md' f
 <br><br>
 
 # Quick Setup
-This is the quick setup for the ***PHP developer stack container*** consists of a **Base Container** and several **Sub Containers**. **The Base Container** is required for any **Sub Container**. The **Sub Containers** contain the development environments for the template application projects running on Linux. ]
+This is the quick setup for the ***PHP developer stack container*** consists of a **Base Container** and several **Sub Containers**. **The Base Container** is required for any **Sub Container**. The **Sub Containers** contain the development environments for the template application projects running on Linux.
 
 #### Available container
 
@@ -25,10 +25,9 @@ This is the quick setup for the ***PHP developer stack container*** consists of 
 
 
 
-### Quick setup
-This is the quick setup procedure for the container: ***PHP developer stack container***.
-
-If you have previously installed this (or a similar)  container, you can use these quick setup steps below. Otherwise please first read the main documentation page [howto_create_a_dev_container](Howtos/howto_create_a_dev_container.md).
+### Setup steps
+These are the quick setup steps for the ***PHP developer stack container***.
+If you have previously installed this (or a similar) container, you can use these setup step, otherwise please first read the main documentation page [howto_create_a_dev_container](Howtos/howto_create_a_dev_container.md).
 
 
 1) **Create docker base container (Afx-Base-PyCRust-Service)**{: style="color:green; "} <br>
