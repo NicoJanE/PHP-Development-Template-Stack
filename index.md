@@ -17,7 +17,7 @@ _This source code is licensed under the MIT License found in the  'LICENSE.md' f
 <br>
  
 # What
-This is a template Docker development/Swarm container for PHP developers. When you want to use this as a development template, for your docker PHP project (including composer and PHPUnit) you can use the following [quick setup reference](quick-setup)
+This is a template Docker development/Swarm container for PHP developers. When you want to use this as a development template, for your docker PHP project (including composer and PHPUnit) you can use the following [quick setup reference](Howtos/quick-setup)
 
 
 1. Debian container with: Apache, PHP, PHP-FPM (CGI gateway), PHPUnit, Codeception (***TODO  AddOn***)

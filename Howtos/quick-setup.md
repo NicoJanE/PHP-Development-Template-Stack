@@ -1,7 +1,7 @@
 ---
 layout: default_c
 RefPages:
- - Howtos/howto_create_a_dev_container
+ - howto_create_a_dev_container
 --- 
 
 <small>
