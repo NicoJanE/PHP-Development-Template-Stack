@@ -75,6 +75,6 @@ After this you should be able to open the container in VSC and start developing,
 
 > **More information!**{: style="color:#5491fa;font-size:13px; "} <br>
 <small>
-See the main documentation page [how to create a development container](./Howtos/howto_create_a_dev_container). Which explains the installation of the *Base Container* and any available *Sub Containers* in more details.
+See the main documentation page [how to create a development container](howto_create_a_dev_container). Which explains the installation of the *Base Container* and any available *Sub Containers* in more details.
 </small>
 
