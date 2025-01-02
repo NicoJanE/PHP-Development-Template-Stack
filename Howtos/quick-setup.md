@@ -7,8 +7,8 @@ RefPages:
 <small>
 <br>
 _This file is part of: **PHP Development Template Stack**_
-_Copyright (c) 2024 Nico Jan Eelhart_
-_This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._(_last update: 31 Dec. 2024_)
+_Copyright (c) 2025 Nico Jan Eelhart_
+_This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._(_last update: 02 jan. 2025_)
 </small>
 <br><br>
 
@@ -30,7 +30,7 @@ These are the quick setup steps for the ***PHP developer stack container***.
 If you have previously installed this (or a similar) container, you can use these setup step, otherwise please first read the main documentation page [howto_create_a_dev_container](Howtos/howto_create_a_dev_container.md).
 
 
-1) **Create docker base container (Afx-Base-PyCRust-Service)**{: style="color:green; "} <br>
+1) **Create docker base PHP container**{: style="color:green; "} <br>
 Enter the sub directory ***./ApachePHPWebService***. Open a command prompt and  use the following to create the basic docker base container, on which the sub-containers depends on
  <pre class="nje-cmd-one-line">docker-compose -f compose_apache_php_cont.yml up -d --build --force-recreate --remove-orphans </pre>
  
@@ -65,11 +65,11 @@ After this you should be able to open the container in VSC and start developing,
 **VSC In the container**
 - Open VSC 
 - Select the Docker tab and select the container ***'apachephpwebservice-webserver-apache-php'*** right click 'attach Visual Studio Code'
-- In VSC choose: 'open folder' and select the directory **'/usr/local/apache2/htdocs'***, This should open your PHP project in the contaikner
+- In VSC choose: 'open folder' and select the directory **'/usr/local/apache2/htdocs'***, This should open your PHP project in the container
 
 **VSC local**
 - Open VSC 
-- In VSC choose: 'open folder' and select the directory **'D:\Php\Projects\Mine\pfin\ApachePHPWebService\app\'***, This should open your PHP project locally
+- In VSC choose: 'open folder' and select your project directory this will open your PHP project locally.
 
 
 
