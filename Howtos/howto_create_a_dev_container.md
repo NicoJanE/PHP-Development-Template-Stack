@@ -17,7 +17,7 @@ _This source code is licensed under the MIT License found in the  'LICENSE.md' f
 <br><br><br>
 
 # 1. Create and start a PHP developer container
-This section describes how to create and start the Docker PHP container. If you want to experiment with a swarm (create, initialize, and run different containers), refer to the document: [***How to Create a Swarm***](Howto_Create_A_Swarm)
+This section describes how to create and start the Docker PHP container. If you want to experiment with a swarm (create, initialize, and run different containers), refer to the document: [***How to Create a Swarm***](howto_create_a_swarm)
 
 <details>  
   <summary class="clickable-summary">

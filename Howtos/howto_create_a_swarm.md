@@ -16,7 +16,7 @@ _This source code is licensed under the MIT License found in the  'LICENSE.md' f
 <br><br><br>
 
 # What
-This describes how to create a Docker Swarm of this PHP container. These instructions are intended for developers who wants to experiment and learn how to deal with a Docker Swarm. To create and use a development container see the document: [How to create a development container](howto_create_A_dev_container)
+This describes how to create a Docker Swarm of this PHP container. These instructions are intended for developers who wants to experiment and learn how to deal with a Docker Swarm. To create and use a development container see the document: [How to create a development container](howto_create_a_dev_container)
 
 ## 1. Create Multipass docker VM infrastructure(X (5) VMs) and Initialize the Swarm.
 We use Multipass for the different Virtual machines to hold the Docker Swarm.
