@@ -14,17 +14,18 @@ _This file is part of: **PHP Development Template Stack**_
 _Copyright (c) 2024 Nico Jan Eelhart_
 _This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._
 </small>
-<br><br><br>
+<br><br>
 
-# 1. Create and start a PHP developer container
+## 1. Create and start a PHP developer container
 This section describes how to create and start the Docker PHP container. If you want to experiment with a swarm (create, initialize, and run different containers), refer to the document: [***How to Create a Swarm***](howto_create_a_swarm)
+
+
 
 <details>  
   <summary class="clickable-summary">
   <span  class="summary-icon"></span> 
   **Side note**: Docker call syntax
-  </summary> 	<!-- On same line is failure, Don't indent the following Markdown lines!  -->
-  
+  </summary> 	<!-- On same line is failure, Don't indent the following Markdown lines!  -->  
 >### Docker call syntax 
 <small> (***Skip this if you known docker basics***) </small><br>
 **Take note: Docker calling context**
@@ -52,16 +53,88 @@ With the named file, we have to use
 The same applies for running the Compose file (use **-f** option)
 </details>
 
-## 1.1 The basic PHP container setup
+
+
+
+### 1.1 The basic PHP container setup
 This section creates and start the PHP container in docker Desktop.
 **To Setup** creat and start the PHP container in docker Desktop execute this command from the **ApachePHPWebService**  directory:  
+
+<pre class="nje-cmd-multi-line">
+docker  compose -f compose_apache_php_cont.yml up -d
+
+# To rebuild an existing container avoid caching issues, you can use:
+docker-compose -f compose_apache_php_cont.yml up -d --build --force-recreate
+</pre>
+
+##### Results & running the sample app
+Test the container by executing the following tasks
+
+<small style="display: block; margin-left: 22px; font-size: 13px; background-color: #ffffff; "><b><i>Expected running Website</i></b><br> <small>
+<small style="display: block; margin-bottom: 0px;margin-left: 0px; font-size: 14px; background-color: #f0f0f0; padding: 8px; border-radius: 4px;">
+&#9830; [http://localhost:8071/phpinfo.php](http://localhost:8071/phpinfo.php) <br>
+&#9830; [http://localhost:8071/index.php](http://localhost:8071/index.php)    
+</small> 
+
+<small style="display: block; margin-left: 22px; font-size: 13px; background-color: #ffffff; "><b><i>Location of files in container</i></b><br> <small>
+<small style="display: block; margin-bottom: 0px;margin-left: 0px; font-size: 14px; background-color: #f0f0f0; padding: 8px; border-radius: 4px;">
+&#9830; /usr/local/apache2/htdocs/public <br>
+</small> 
+
+<small style="display: block; margin-left: 22px; font-size: 13px; background-color: #ffffff; "><b><i>mount bind location on Windows host</i></b><br> <small>
+<small style="display: block; margin-bottom: 0px;margin-left: 0px; font-size: 14px; background-color: #f0f0f0; padding: 8px; border-radius: 4px;">
+&#9830; ..\ApachePHPWebService\app <br>
+</small> 
+<br>
+
+
+
+
+### 1.2 Add PHPUnit to the image (sub-container)
+Optional you can add the PHPunit test framework to the image, after executing the commands in the previous paragraph execute  this command: ( again in the **[name]Service**  directory)  
+<br>
+<pre class="nje-cmd-one-line">
+docker  compose -f compose_UnitTest_Addon.yml up -d  --remove-orphans --build --force-recreate
+</pre>
+
+##### Results & running the sample app
+When this is done the following commands(in the container) should return the phpunit and composer versions 
+
+<small style="display: block; margin-left: 19px;margin-bottom: -20px; font-size: 13px; background-color: #ffffff; "><b><i>Expected installation results</i></b><br> <small>
+<pre class="nje-cmd-multi-line">
+phpunit --version		# returns version phpunit
+composer -V			# returns vcersio composer
+#
+# In case the phpunit --version command returns not found, do this
+RUN echo 'export PATH="/root/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc \
+    && . ~/.bashrc
+</pre>
+
+<small style="display: block; margin-left: 20px; font-size: 13px; background-color: #ffffff; "><b><i>Expected running Website</i></b><br> <small>
+<small style="display: block; margin-bottom: 0px;margin-left: 0px; font-size: 14px; background-color: #f0f0f0; padding: 8px; border-radius: 4px;">
+&#9830; [http://localhost:8071/phpinfo.php](http://localhost:8071/phpinfo.php) <br>
+&#9830; [http://localhost:8071/index.php](http://localhost:8071/index.php)    
+</small> 
+
+
+
+<br>
+## 2. Develop and debug in Visual Studio Code
+- Open VSC and press the docker Icon(left sidebar)
+- Right Click on your container and choose "Attache Visual Studio Code" a new VSC Window opens that is mapped the container
+- Choose: Open folder and select the folder ***/usr/local/apache2/htdocs***
+- For debug installation/configuration see the howto file: [howto_steps_for_debugging](howto_steps_for_debugging)
+
+<hr>
+<br>
+## Appendix 1 Create other template from this template.
 
 <details>  
   <summary class="clickable-summary">
   <span  class="summary-icon"></span> 
   **Side note**: Create Project from Template
   </summary> 	<!-- On same line is failure, Don't indent the following Markdown lines!  -->
-  
+When You want to customize this template for your own template you can use the following rough procedure
 >### Create Project from Template
 >>  <small> ***Skipp this if you known how to deal with copy\customize docker files*** </small> <br>
 >
@@ -95,54 +168,5 @@ webserver-nodejs-react:  # Change this ```<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb
 > **Make sure that Host port: 3002 is not used by any other docker container or other services on your host!**
 <br> <br>
 </details>
+<br>
 
-```
-docker  compose -f compose_apache_php_cont.yml up -d
-# To rebuild an existing container avoid caching issues, you can use:
-docker-compose -f compose_apache_php_cont.yml up -d --build --force-recreate
-```
-### Result & running
-**Test if it runnings with:**
--	[http://localhost:8071/phpinfo.php](http://localhost:8071/phpinfo.php)
--	[http://localhost:8071/index.php](http://localhost:8071/index.php) 
-
-**Location of files in container:**
-Files can be found in:
-- `/usr/local/apache2/htdocs/public`
-- `/usr/local/apache2/htdocs/public`
-
-**mount bind location on host**
-- `..\ApachePHPWebService\app`
-<br><br>
-
-## 1.2 Add PHPUnit to the image (Add-on)
-Optional you can add the PHPunit test framework to the image, after executing the commands in the previous paragraph execute  this command: ( again in the **[name]Service**  directory)  
-```                                       
-docker  compose -f compose_UnitTest_Addon.yml up -d  --remove-orphans --build --force-recreate
-```
-
-
-When this is done the following commands(in the container) should return the phpunit and composer versions 
-
-```
-phpunit --version		# returns version phpunit
-composer -V			# returns vcersio composer
-``` 
-
-```
-# In case the phpunit --version command returns not found, do this
-RUN echo 'export PATH="/root/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc \
-    && . ~/.bashrc
-```
-
-### Result & running
--	[http://localhost:8071/phpinfo.php](http://localhost:8071/phpinfo.php)
--	[http://localhost:8071/index.php](http://localhost:8071/index.php) 
-
-
-
-# 2. Develop and debug in Visual Studio Code
-- Open VSC and press the docker Icon(left sidebar)
-- Right Click on your container and choose "Attache Visual Studio Code" a new VSC Window opens that is mapped the container
-- Choose: Open folder and select the folder ***/usr/local/apache2/htdocs***
-- For debug installation/configuration see the howto file: [howto_steps_for_debugging](howto_steps_for_debugging)
