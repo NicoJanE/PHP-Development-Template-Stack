@@ -1,0 +1,42 @@
+# This file is part of: PHP Development Template Stack 
+# Copyright (c) 2025 Nico Jan Eelhart
+#
+# This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
+#
+
+# This requires that the base image is build(docker  compose -f compose_apache_php_cont.yml up -d)
+#	Extending/Chaining 
+#	Installs PHPunit test environment in the docker image:''
+#
+FROM eelhart/apachephpweb:latest
+
+
+# Install necessary dependencies, including Python
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-venv \
+    python3-pip \
+    build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+	
+# Install PySide6 for our GUI interface (based on Qt 6.0+) PySide6 is available under both Open Source (LGPLv3/GPLv3) and commercial 
+# https://www.qt.io/pricing?filter=development-tools
+#
+# Create a virtual environment and install PySide6 inside it, by default\typically the virtual env. is created in:
+# /opt/ (see command below) Another location would be in the project folder (/project-name/.venv)
+# While activation of the VM is not needed, or debugging in VSC is strongly recommend to activate it (use a preLaunchTask)
+# like: CMD ["/bin/bash", "-c", "source /opt/python-env/bin/activate"]
+RUN python3 -m venv /opt/python-env && \
+    /opt/python-env/bin/pip install --upgrade pip && \
+    /opt/python-env/bin/pip install PySide6
+ENV PATH="/opt/python-env/bin:$PATH"
+
+# 3) Test
+# python3 --version && pip3 show PySide6
+
+
+# End Docker file 
+
+
+
