@@ -3,12 +3,13 @@
 # What
 This is a **Docker Template Stack container(DTS) for PHP projects**. It consists of:
 - Latest mainstream PHP version
+  - including Symfony
 - Option to install other PHP version(side by side)
 - Debug instructions
 - Possibility to add Testing framework
 
 
-You can use this container to start programming in your local environment for development and testing purposes. For the rest of the documentation open the [main documentation page](https://nicojane.github.io/PHP-Development-Template-Stack/). Other DTS containers can be found [here](https://nicojane.github.io/Docker-Template-Stacks-Home/)
+You can use this container to start programming in your local environment for development and testing purposes. For the rest of the documentation open the [main documentation page](https://nicojane.github.io/PHP-Development-Template-Stack/). Or the Quick Setup [here](./Howtos/quick-setup). Other DTS containers can be found [here](https://nicojane.github.io/Docker-Template-Stacks-Home/)
 
 <sub> &nbsp;&nbsp;&nbsp;&nbsp; *Is this a local repository project? Then use this local link [main page](./index) file. <sub>
 <br><br>

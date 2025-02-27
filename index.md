@@ -20,7 +20,7 @@ _This source code is licensed under the MIT License found in the  'LICENSE.md' f
 This is a template Docker development/Swarm container for PHP developers. When you want to use this as a development template, for your docker PHP project (including composer and PHPUnit) you can use the following [quick setup reference](Howtos/quick-setup)
 
 
-1. Debian container with: Apache, PHP, PHP-FPM (CGI gateway), PHPUnit, Codeception (***TODO  AddOn***)
+1. Debian container with: Apache, PHP, PHP-FPM (CGI gateway), PHPUnit, Symfony,  Codeception (***TODO  AddOn***)
 1. Instructions for adding additional PHP versions
 1. Instructions for creating a development container. 
 Use this for creating and starting a local container, for development and test work. 
@@ -45,6 +45,7 @@ More documents can be found in the 'Howto" directory. it contains:
 2. Swarm document: open [how to create a swarm of this container](./Howtos/howto_create_a_swarm)
 3. Instructions to install and use other PHP versions: open [how to install other PHP versions](./Howtos/howto_install_other_PHP_versions)
 4. Instructions to configure/install debugging see: [how to include debugging](./Howtos/howto_steps_for_debugging)
+5. Document root adjustments in: /usr/local/apache2/conf/extra/httpd-vhosts.conf
 <br>
 
 <details closed>  

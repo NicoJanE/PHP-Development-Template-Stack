@@ -56,6 +56,7 @@ The same applies for running the Compose file (use **-f** option)
 
 
 
+
 ### 1.1 The basic PHP container setup
 This section creates and start the PHP container in docker Desktop.
 **To Setup** creat and start the PHP container in docker Desktop execute this command from the **ApachePHPWebService**  directory:  
@@ -67,27 +68,49 @@ docker  compose -f compose_apache_php_cont.yml up -d
 docker-compose -f compose_apache_php_cont.yml up -d --build --force-recreate
 </pre>
 
-##### Results & running the sample app
+#### Results & running the sample app
 Test the container by executing the following tasks
 
-<small style="display: block; margin-left: 22px; font-size: 13px; background-color: #ffffff; "><b><i>Expected running Website</i></b><br> <small>
-<small style="display: block; margin-bottom: 0px;margin-left: 0px; font-size: 14px; background-color: #f0f0f0; padding: 8px; border-radius: 4px;">
-&#9830; [http://localhost:8071/phpinfo.php](http://localhost:8071/phpinfo.php) <br>
-&#9830; [http://localhost:8071/index.php](http://localhost:8071/index.php)    
-</small> 
-
-<small style="display: block; margin-left: 22px; font-size: 13px; background-color: #ffffff; "><b><i>Location of files in container</i></b><br> <small>
-<small style="display: block; margin-bottom: 0px;margin-left: 0px; font-size: 14px; background-color: #f0f0f0; padding: 8px; border-radius: 4px;">
-&#9830; /usr/local/apache2/htdocs/public <br>
-</small> 
-
-<small style="display: block; margin-left: 22px; font-size: 13px; background-color: #ffffff; "><b><i>mount bind location on Windows host</i></b><br> <small>
-<small style="display: block; margin-bottom: 0px;margin-left: 0px; font-size: 14px; background-color: #f0f0f0; padding: 8px; border-radius: 4px;">
-&#9830; ..\ApachePHPWebService\app <br>
+<small style="display: block; margin-left: 22px; font-size: 13px; color-scheme: light dark; background-color: Canvas; ">
+  <b><i>Location of files(current 'Document Root') in container</i></b><br> </small>
+<small style="display: block; margin-bottom: 0px;margin-left: 22px; font-size: 14px; background-color: CanvasText; color: Canvas; padding: 8px; border-radius: 4px;">
+  &#9830; [http://localhost:8071/phpinfo.php](http://localhost:8071/phpinfo.php) <br>
+  &#9830; [http://localhost:8071/index.php](http://localhost:8071/index.php)
 </small> 
 <br>
 
+<small style="display: block; margin-left: 22px; font-size: 13px; color-scheme: light dark; background-color: Canvas; ">
+  <b><i>Location of files(current 'Document Root') in container</i></b><br> 
+</small>
+<small style="display: block; margin-bottom: 0px;margin-left: 22px; font-size: 14px; background-color: CanvasText; color: Canvas; padding: 8px; border-radius: 4px;">
+  &#9830; /usr/local/apache2/htdocs/public <br>
+</small> 
+<br>
 
+<small style="display: block; margin-left: 50px; font-size: 13px; color-scheme: light dark; background-color: Canvas; ">
+  <b><i>Update Document Root in</i></b><br> 
+</small>
+<small style="display: block; margin-bottom: 0px;margin-left: 50px; font-size: 14px;background-color: CanvasText; color: Canvas;; padding: 8px; border-radius: 4px;">
+  &#176; /usr/local/ApachePHPWebService/shared-host <br>
+  &#176; Tip: For a second site enter the setting in httpd-vhosts.conf and add a alias `Alias /test2 /usr/local/apache2/htdocs/test2/public` <br>
+</small> 
+<br>
+
+<small style="display: block; margin-left: 22px; font-size: 13px; color-scheme: light dark; background-color: Canvas; ">
+  <b><i>mount bind location on Windows host</i></b><br> 
+</small>
+<small style="display: block; margin-bottom: 0px;margin-left: 22px; font-size: 14px; background-color: CanvasText; color: Canvas; padding: 8px; border-radius: 4px;">
+  &#9830; ..\ApachePHPWebService\app <br>
+</small> 
+<br>
+
+#### Symfony 
+Symfony is included, start project:
+- symfony new project-name
+- Update the **Document root** to the ***public*** directory of the new created project directory.
+- Form more information about Symfony, see [here](https://symfony.com/) 
+
+<br><br>
 
 
 ### 1.2 Add PHPUnit to the image (sub-container)

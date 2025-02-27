@@ -19,7 +19,7 @@ This is the quick setup for the ***PHP developer stack container*** consists of 
 
 | ***Container name***                | ***Description*** |
 |:-----------------                   |:----------------|
-| compose_apache_php_cont             | The basic container     
+| compose_apache_php_cont             | The basic container, includes Symfony     
 | compose_UnitTest_Addon.yml          | Adds composer abd PHP unit test |
 | compose_apache_php_swarm            | Creates the container as a swarm, example of swarm   |
 
@@ -41,11 +41,15 @@ Enter the sub directory ***./ApachePHPWebService***. Open a command prompt and  
  <span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span> &#176; Start it!
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071/phpinfo.php) page should display the **PHP info page**
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071) page should display the **PHP application start page**
- <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** Web application page **source** can be found at: ***/usr/local/apache2/htdocs/***
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** The Apache2 **Document root** can be adjusted here: ***/usr/local/apache2/conf/extra httpd-vhosts.conf***
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** Current **document root/source** at: ***/usr/local/apache2/htdocs/***
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** To start a Symfony project use: `symfony new projectname` and update the Document root to the public directory created.
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span> &#176; a bind mount to that folder, local, can be found in the ./ApachePHPWebService/app/
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** A general bind mount folder, local, can be found at: ***/usr/local/ApachePHPWebService/shared-host***
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span> &#176; Which is known at the server as: **/shared-host**
  </small> 
+
+<br>
 
 2) **Create sub-container: PHP package manager & PHP UnitTest**{: style="color:green; "} <br>
 Adds the **composer** package  manager and the PHP Unit tests framework. Enter the sub directory ***./ApachePHPWebService*** and open a command prompt and use the following command
@@ -66,6 +70,7 @@ After this you should be able to open the container in VSC and start developing,
 - Open VSC 
 - Select the Docker tab and select the container ***'apachephpwebservice-webserver-apache-php'*** right click 'attach Visual Studio Code'
 - In VSC choose: 'open folder' and select the directory **'/usr/local/apache2/htdocs'***, This should open your PHP project in the container
+- You can create a new symphony project with `symfony new my_api_project`, make sure to set the **Document root** to the public folder of the new created project, probably you also need a .htaccess file. 
 
 **VSC local**
 - Open VSC 
