@@ -41,7 +41,7 @@ Enter the sub directory ***./ApachePHPWebService***. Open a command prompt and  
  <span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span> &#176; Start it!
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071/phpinfo.php) page should display the **PHP info page**
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071) page should display the **PHP application start page**
- <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** The Apache2 **Document root** can be adjusted here: ***/usr/local/apache2/conf/extra httpd-vhosts.conf***
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** The Apache2 **Document root** can be adjusted here: ***/usr/local/apache2/conf/extra/httpd-vhosts.conf***
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** Current **document root/source** at: ***/usr/local/apache2/htdocs/***
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** To start a Symfony project use: `symfony new projectname` and update the Document root to the public directory created.
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span> &#176; a bind mount to that folder, local, can be found in the ./ApachePHPWebService/app/

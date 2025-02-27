@@ -72,7 +72,7 @@ docker-compose -f compose_apache_php_cont.yml up -d --build --force-recreate
 Test the container by executing the following tasks
 
 <small style="display: block; margin-left: 22px; font-size: 13px; color-scheme: light dark; background-color: Canvas; ">
-  <b><i>Location of files(current 'Document Root') in container</i></b><br> </small>
+  <b><i>Available default websites, after container creation:</i></b><br> </small>
 <small style="display: block; margin-bottom: 0px;margin-left: 22px; font-size: 14px; background-color: CanvasText; color: Canvas; padding: 8px; border-radius: 4px;">
   &#9830; [http://localhost:8071/phpinfo.php](http://localhost:8071/phpinfo.php) <br>
   &#9830; [http://localhost:8071/index.php](http://localhost:8071/index.php)
@@ -80,7 +80,7 @@ Test the container by executing the following tasks
 <br>
 
 <small style="display: block; margin-left: 22px; font-size: 13px; color-scheme: light dark; background-color: Canvas; ">
-  <b><i>Location of files(current 'Document Root') in container</i></b><br> 
+  <b><i>Location of files (current 'Document Root') in container:</i></b><br> 
 </small>
 <small style="display: block; margin-bottom: 0px;margin-left: 22px; font-size: 14px; background-color: CanvasText; color: Canvas; padding: 8px; border-radius: 4px;">
   &#9830; /usr/local/apache2/htdocs/public <br>
@@ -88,16 +88,16 @@ Test the container by executing the following tasks
 <br>
 
 <small style="display: block; margin-left: 50px; font-size: 13px; color-scheme: light dark; background-color: Canvas; ">
-  <b><i>Update Document Root in</i></b><br> 
+  <b><i>Update Document Root in:</i></b><br> 
 </small>
 <small style="display: block; margin-bottom: 0px;margin-left: 50px; font-size: 14px;background-color: CanvasText; color: Canvas;; padding: 8px; border-radius: 4px;">
-  &#176; /usr/local/ApachePHPWebService/shared-host <br>
+  &#176; /usr/local/apache2/conf/extra/httpd-vhosts.conf <br>
   &#176; Tip: For a second site enter the setting in httpd-vhosts.conf and add a alias `Alias /test2 /usr/local/apache2/htdocs/test2/public` <br>
 </small> 
 <br>
 
 <small style="display: block; margin-left: 22px; font-size: 13px; color-scheme: light dark; background-color: Canvas; ">
-  <b><i>mount bind location on Windows host</i></b><br> 
+  <b><i>mount bind location in Windows host:</i></b><br> 
 </small>
 <small style="display: block; margin-bottom: 0px;margin-left: 22px; font-size: 14px; background-color: CanvasText; color: Canvas; padding: 8px; border-radius: 4px;">
   &#9830; ..\ApachePHPWebService\app <br>
