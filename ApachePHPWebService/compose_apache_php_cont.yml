@@ -6,7 +6,30 @@
 
 
 networks:
-  php_network:                                 # Define a network
+  php_network:                                  # Define a network, Changes this in case of external: true
+    external: false                             # See 1) explanation below
+    name: php_network_intern
+    driver: bridge 
+    ipam:
+      config:
+        - subnet: ${FIXED_SUBNET}
+
+# 1) Explanation 'external'
+# external: false → Docker Compose creates the network automatically using IP defined in .env
+#
+# Changes this to 'true' in case you need other in depended (defined in other compose files)  Docker-services
+# to access the service defined here. In that case you need:
+#
+#   1) Set the name network name(php_network) also in the other Docker compose file 
+#   2) Set the external in the other compose file to true
+#   3) Use the same network Subnets(defined in .env file) in both services
+#   4) start network manually before starting any of the services (make sure to use the correct sub network)
+#
+#       Example: docker network create --subnet=${FIXED_SUBNET} php_network
+#
+#   Test if both are on the same network: docker network inspect php_network
+#   To Test the used IP address inside the container enter: hostname -I
+#
 
 
 volumes:
@@ -25,9 +48,16 @@ services:
               published: 8071                   # Port to access from external (Host)        
             - "9003:9003"  
         networks:    
-            - php_network                       # Use this Network
+            php_network:                       # Use this Network
+                ipv4_address: ${FIXED_IP}       # Use a fixed IP address for this container
         volumes:
-            - ./app:/usr/local/apache2/htdocs                                       # Bind mount the APP in htdocs which includes 'public'(is the www root)  
+#           *** WARNING 1 ****
+#           Don't use a bind mount to your Symfony project directory in Windows host. It is
+#           horrible slow (+/-10 second to load simple page, none cached page)
+#           You can use the '/shared-host'bind mount to copy your project(as backup) to the Windows host instead
+#
+#            - "D:\\Php\\Projects\\Mine\\Wiki-store\\project-php-app:/usr/local/apache2/htdocs"  # Bind mount the APP in htdocs which includes 'public'(is the www root)
+#            - ./app:/usr/local/apache2/htdocs                                      # Bind mount the APP in htdocs which includes 'public'(is the www root)  
             - ./shared-host:/shared-host                                            # General Bind Mount for shared files between host <> container for backups and others
         stdin_open: true                                                            # Keep STDIN open for `docker exec -it`
         tty: true

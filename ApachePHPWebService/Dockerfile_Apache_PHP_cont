@@ -9,61 +9,50 @@
 # Debian 12 with Apache 2.4 supporting PHP 8.2 by default
 FROM httpd:bookworm		
 
-# ***** These instructions depend and are tested only on the 'bookworm' Apache version *** !!!
-# 1) INSTALL PHP and some other required software -y makes sure defaults are applied during installation (always run apt-get update 1e )	
+# 1) INSTALL PHP and other required software
 RUN apt-get update && \
-    apt-get install -y software-properties-common curl git && \
+    apt-get install -y software-properties-common curl git wget && \
     apt-get update && \
-    apt-get install -y php8.2 php8.2-xdebug php8.2-fpm nano net-tools  apache2-utils rsync && \
+    apt-get install -y php8.2 php8.2-fpm php8.2-mbstring php8.2-xml php8.2-curl php8.2-dom php8.2-cli php8.2-mysql php8.2-xdebug nano net-tools iputils-ping && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-		
-	
-# 2) Included repositories for other PHP versions
-# Make sure dependencies satisfy (Install dependencies)
-RUN apt update && \ 
-	apt install -y lsb-release apt-transport-https ca-certificates wget	
-#
-# Get PHP repository
-RUN wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add -
-RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
-RUN apt update	
 
+# 2) Add PHP repository (if not already added)
+RUN wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
+    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list && \
+    apt-get update
 
-# 3 Copy required files, to start Apache and to use our own configuration files
+# 3) Explicitly Install PHP 8.2 (to prevent fetching PHP 8.3 if available)
+RUN apt-get install -y php8.2 php8.2-fpm php8.2-mbstring php8.2-xml php8.2-curl php8.2-dom php8.2-cli php8.2-mysql php8.2-xdebug && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# 3) Copy configuration files
 COPY shared-container-files/start.* /usr/local/apache2/
 COPY shared-container-files/httpd.conf /usr/local/apache2/conf/
 COPY shared-container-files/httpd-vhosts.conf /usr/local/apache2/conf/extra/
 
-
-# 4 Add PHP composer
+# 4) Add Composer
 RUN wget -O composer-setup.php https://getcomposer.org/installer
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-# 5 Add PHP Symfony
-# 5.1 required for Symfony
-RUN apt-get update && \
-    apt-get install -y \
-        php-xml php-mbstring php-intl \
-        php-curl php-zip php-bcmath php-gd \
-        php-mysql php-sqlite3 php-xdebug \
-        php-cli php-common && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-
-
-
-# 5.2 Install Symfony
+# 5) Install Symfony
 RUN curl -sS https://get.Symfony.com/cli/installer | bash \
     && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
+# 6) see WARNING 1 in compose file!   Docker using mount bind is horrible Slow in symfony!! 
+# 6.1) Symfony App
+COPY app-symfony /usr/local/apache2/htdocs
+# 6.2 Raw-app)
+COPY app-raw /usr/local/apache2/htdocs
 
-# Expose ports (Don't put comments behind the port on same line = error!)
+RUN chown -R www-data  /usr/local/apache2/htdocs
+RUN chmod 755 -R /usr/local/apache2/htdocs
+
+# Expose ports
 EXPOSE 8071
 EXPOSE 9000
 EXPOSE 9003
-
 
 						#End Docker file 
 

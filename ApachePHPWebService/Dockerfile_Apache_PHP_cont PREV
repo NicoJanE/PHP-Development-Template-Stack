@@ -1,0 +1,91 @@
+# This file is part of: PHP Development Template Stack 
+# Copyright (c) 2024 Nico Jan Eelhart
+#
+# This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
+#
+
+
+# Base image Apache 
+# Debian 12 with Apache 2.4 supporting PHP 8.2 by default
+FROM httpd:bookworm		
+
+# ***** These instructions depend and are tested only on the 'bookworm' Apache version *** !!!
+# 1) INSTALL PHP and some other required software -y makes sure defaults are applied during installation (always run apt-get update 1e )	
+#RUN apt-get update && \
+#    apt-get install -y software-properties-common curl git && \
+#    apt-get update && \
+#    apt-get install -y php8.2 php8.2-xdebug php8.2-fpm nano net-tools  apache2-utils rsync iputils-ping  && \
+#    apt-get clean && \
+#    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y software-properties-common curl git && \
+    apt-get update && \
+    apt-get install -y php8.3 php8.3-fpm php8.3-mbstring php8.3-xml php8.3-curl php8.3-dom php8.3-cli php8.3-mysql php8.3-xdebug && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+
+		
+	
+# 2) Included repositories for other PHP versions
+# Make sure dependencies satisfy (Install dependencies)
+RUN apt update && \ 
+	apt install -y lsb-release apt-transport-https ca-certificates wget	
+#
+# Get PHP repository
+RUN wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add -
+RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+RUN apt update	
+
+
+# 3 Copy required files, to start Apache and to use our own configuration files
+COPY shared-container-files/start.* /usr/local/apache2/
+COPY shared-container-files/httpd.conf /usr/local/apache2/conf/
+COPY shared-container-files/httpd-vhosts.conf /usr/local/apache2/conf/extra/
+
+
+# 4 Add PHP composer
+RUN wget -O composer-setup.php https://getcomposer.org/installer
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+# 5 Add PHP Symfony
+# 5.1 required for Symfony
+RUN apt-get update && \
+    apt-get install -y \
+        php-xml php-mbstring php-intl \
+        php-curl php-zip php-bcmath php-gd \
+        php-mysql php-sqlite3 php-xdebug \
+        php-cli php-common && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+
+
+
+# 5.2 Install Symfony
+RUN curl -sS https://get.Symfony.com/cli/installer | bash \
+    && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
+
+
+# Expose ports (Don't put comments behind the port on same line = error!)
+EXPOSE 8071
+EXPOSE 9000
+EXPOSE 9003
+
+
+						#End Docker file 
+
+
+
+# SAMPLES
+# 1)	Search and replacesample 
+# 		RUN sed -i 's/^#LoadModule\ mpm_prefork_module/LoadModule\ mpm_prefork_module/' /usr/local/apache2/conf/httpd.conf-
+# 2)	Commit the image under new name
+# 		exit
+# 		docker commit my_container compose_apache_php_cont_php7:latest
+#
+# HANDY. To find out if package exists, and related packages, use something like this:
+# CMD:	'apt-cache search php7.4' Or
+#		'apt-cache search php5.*'
+
