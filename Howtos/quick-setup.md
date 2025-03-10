@@ -40,7 +40,8 @@ Enter the sub directory ***./ApachePHPWebService***. Open a command prompt and  
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** In docker a new service called: **apachephpwebservice**, <br>
  <span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span> &#176; Start it!
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071/phpinfo.php) page should display the **PHP info page**
- <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071) page should display the **PHP application start page**
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071) page should display the **PHP Symfony application(Website I)** <br>In case of an **error** you have to run `composer install` **first** from: **/htdocs/symfony-apps/wiki-store**
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071/raw-app) page should display the **PHP Raw app (website II)**
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** The Apache2 **Document root** can be adjusted here: ***/usr/local/apache2/conf/extra/httpd-vhosts.conf***
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** Current **document root/source** at: ***/usr/local/apache2/htdocs/***
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** make sure it has the www-data owner and permissions `chown -R www-data ./htdocs` and `chmod -R 755 ./htdocs`

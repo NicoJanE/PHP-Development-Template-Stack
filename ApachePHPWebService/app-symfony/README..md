@@ -5,10 +5,11 @@ Assuming you have installed the container
 ## Installation
 
 1. Navigate to the project directory or open this project site in the container, for example with VSC: ***/usr/local/apache2/htdocs/symfony-apps/wiki-store***
+2. Run `composer install`
 2. Document root is set to: ***/usr/local/apache2/htdocs/symfony-apps/wiki-store/public*** by default
 3. Configuration files:
 	- ***/usr/local/apache2/conf/extra/httpd-vhosts.conf*** <br>(document root)
-	- ***/etc/php/8.2/cli/php.ini***
+	- ***/etc/php/8.2/cli/php.ini*** (`php --ini`)
 	- ***/etc/php/8.2/fpm/php-fpm.conf***
 	- ***/var/log/php8.2-fpm.log*** FPM log
 4. Sites:
