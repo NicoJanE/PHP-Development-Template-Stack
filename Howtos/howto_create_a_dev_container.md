@@ -96,6 +96,18 @@ Test the container by executing the following tasks
 </small> 
 <br>
 
+<small style="display: block; margin-left: 50px; font-size: 13px; color-scheme: light dark; background-color: Canvas; ">
+  <b><i>Set www-data owner andfile permissions in:</i></b><br> 
+</small>
+<small style="display: block; margin-bottom: 0px;margin-left: 50px; font-size: 14px;background-color: CanvasText; color: Canvas;; padding: 8px; border-radius: 4px;">
+  &#176; chown -R www-data ./htdocs <br>
+  &#176; chmod -R 755 ./htdocs <br>
+</small> 
+<br>
+
+
+
+
 <small style="display: block; margin-left: 22px; font-size: 13px; color-scheme: light dark; background-color: Canvas; ">
   <b><i>mount bind location in Windows host:</i></b><br> 
 </small>
@@ -108,7 +120,8 @@ Test the container by executing the following tasks
 Symfony is included, start project:
 - symfony new project-name
 - Update the **Document root** to the ***public*** directory of the new created project directory.
-- Form more information about Symfony, see [here](https://symfony.com/) 
+- Copy the `/usr/local/apache2/htdocs/.htaccess` file to the new public root directory and make sure the www-data owner and permissions are set (restart)
+- For more information about Symfony, see [here](https://symfony.com/) 
 
 <br><br>
 

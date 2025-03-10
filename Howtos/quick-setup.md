@@ -43,13 +43,23 @@ Enter the sub directory ***./ApachePHPWebService***. Open a command prompt and  
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071) page should display the **PHP application start page**
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** The Apache2 **Document root** can be adjusted here: ***/usr/local/apache2/conf/extra/httpd-vhosts.conf***
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** Current **document root/source** at: ***/usr/local/apache2/htdocs/***
- <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** To start a Symfony project use: `symfony new projectname` and update the Document root to the public directory created.
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** make sure it has the www-data owner and permissions `chown -R www-data ./htdocs` and `chmod -R 755 ./htdocs`
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** To start a Symfony project use: `symfony new projectname` and update the Document root to the public directory created, and set the www-data owner and permissions.
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176; After that copy the `/usr/local/apache2/htdocs/.htaccess` file to the new public root directory (restart)
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span> &#176; a bind mount to that folder, local, can be found in the ./ApachePHPWebService/app/
- <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** A general bind mount folder, local, can be found at: ***/usr/local/ApachePHPWebService/shared-host***
- <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span> &#176; Which is known at the server as: **/shared-host**
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830; A general bind mount folder, local, can be found at: ***/usr/local/ApachePHPWebService/shared-host*** Which is known at the server as: **/shared-host**
  </small> 
+<br> <br>
 
-<br>
+>  Additional Docker commands for your convience 
+> - Container info:<br> `docker ps`
+> - Stop the container:<br> `docker stop [container id]`
+> - Start the container:<br> `docker compose -f compose.yaml up -d `
+> - Error and access log: <br>`docker logs -f <container id>	`
+> - Filter Log:<br> `docker logs -f <container id 2>&1 | grep "error" `
+
+
+<br><br>
 
 2) **Create sub-container: PHP package manager & PHP UnitTest**{: style="color:green; "} <br>
 Adds the **composer** package  manager and the PHP Unit tests framework. Enter the sub directory ***./ApachePHPWebService*** and open a command prompt and use the following command
@@ -62,6 +72,7 @@ Adds the **composer** package  manager and the PHP Unit tests framework. Enter t
  <pre class="nje-cmd-one-line-sm-ident" style="--nje-ident: 60px; --nje-vmove: 5px;">composer -V		        # Should return version of Composer</pre>
  <br>
 
+<br><br>
 
 3) **Configure and start the sub container in Visual Studio Code (VSC)**{: style="color:green; "}<br>
 After this you should be able to open the container in VSC and start developing, you can do this local or by attaching to the container in VSC
