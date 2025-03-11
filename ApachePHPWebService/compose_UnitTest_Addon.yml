@@ -4,6 +4,33 @@
 # This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
 #
 
+networks:
+  php_network:                                  # Define a network, Changes this in case of external: true
+    external: false                             # See 1) explanation below
+    name: php_network_intern
+    driver: bridge 
+    ipam:
+      config:
+        - subnet: ${FIXED_SUBNET}
+
+# 1) Explanation 'external'
+# external: false → Docker Compose creates the network automatically using IP defined in .env
+#
+# Changes this to 'true' in case you need other in depended (defined in other compose files)  Docker-services
+# to access the service defined here. In that case you need:
+#
+#   1) Set the name network name(php_network) also in the other Docker compose file 
+#   2) Set the external in the other compose file to true
+#   3) Use the same network Subnets(defined in .env file) in both services
+#   4) start network manually before starting any of the services (make sure to use the correct sub network)
+#
+#       Example: docker network create --subnet=${FIXED_SUBNET} php_network
+#
+#   Test if both are on the same network: docker network inspect php_network
+#   To Test the used IP address inside the container enter: hostname -I
+#
+
+
 #	Extending/Chaining 
 #	Installs PHPunit test environment in the docker image:''
 #
@@ -12,9 +39,6 @@
 #   - Bind mounts don't carry over, you have to specify them again
 #   - same counts for network and pretty much all items
 #   - So better to use a common compose file and let the other compose files extend from items(like we done see extends: )
-
-networks:
-  php_network:                              # Define a network
 
 
 services:
@@ -26,6 +50,9 @@ services:
       context: .
       dockerfile: Dockerfile_UnitTest_Addon
     image: eelhart/apachephpweb:latest      # This name can be used to extend or chain this image.
+    networks:    
+      php_network:                            # Use this Network
+        ipv4_address: ${FIXED_IP2}          # Use a fixed IP address for this container
 
 
 # End compose file 

@@ -43,11 +43,20 @@ RUN curl -sS https://get.Symfony.com/cli/installer | bash \
 # 6) see WARNING 1 in compose file!   Docker using mount bind is horrible Slow in symfony!! 
 # 6.1) Symfony App
 COPY app-symfony /usr/local/apache2/htdocs
+
 # 6.2 Raw-app)
 COPY app-raw /usr/local/apache2/htdocs
 
+#6.3 Update file owner and user rights
 RUN chown -R www-data  /usr/local/apache2/htdocs
 RUN chmod 755 -R /usr/local/apache2/htdocs
+
+# 6.4 Install composer libraries for Symfony project
+WORKDIR /usr/local/apache2/htdocs/symfony-apps/wiki-store
+RUN composer install
+
+# Reset to general project dir
+WORKDIR /usr/local/apache2/htdocs
 
 # Expose ports
 EXPOSE 8071

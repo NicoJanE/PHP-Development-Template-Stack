@@ -35,7 +35,7 @@ RUN echo 'export PATH="/root/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc \
 RUN composer global require phpunit/phpunit
 
 # 3) Test
-# in your CMD tyep: Use: 'phpunit --version' 
+# in your CMD typE: Use: 'phpunit --version' 
 # to check if installation is okay
 
 

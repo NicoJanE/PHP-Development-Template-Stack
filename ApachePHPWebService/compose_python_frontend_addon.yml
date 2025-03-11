@@ -13,7 +13,32 @@
 #   - So better to use a common compose file and let the other compose files extend from the items (like we done see extends: )
 
 networks:
-  php_network:                              # Define a network
+  php_network:                                  # Define a network, Changes this in case of external: true
+    external: false                             # See 1) explanation below
+    name: php_network_intern
+    driver: bridge 
+    ipam:
+      config:
+        - subnet: ${FIXED_SUBNET}
+#
+# 1) Explanation 'external'
+# external: false → Docker Compose creates the network automatically using IP defined in .env
+#
+# Changes this to 'true' in case you need other in depended (defined in other compose files)  Docker-services
+# to access the service defined here. In that case you need:
+#
+#   1) Set the name network name(php_network) also in the other Docker compose file 
+#   2) Set the external in the other compose file to true
+#   3) Use the same network Subnets(defined in .env file) in both services
+#   4) start network manually before starting any of the services (make sure to use the correct sub network)
+#
+#       Example: docker network create --subnet=${FIXED_SUBNET} php_network
+#
+#   Test if both are on the same network: docker network inspect php_network
+#   To Test the used IP address inside the container enter: hostname -I
+#
+
+
 
 services:
   webserver-apache-php:                     # Same name as base file!
@@ -24,6 +49,9 @@ services:
       context: .
       dockerfile: Dockerfile_PythonFrontEnd_Addon
     image: eelhart/apachephp-python-desk:latest      # Specific name for  this image. This name can be used to extend or chain this image.
+    networks:    
+      php_network:                       # Use this Network
+        ipv4_address: ${FIXED_IP3}       # Use a fixed IP address for this container
 
 
 # End compose file 
