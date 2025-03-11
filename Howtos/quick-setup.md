@@ -71,11 +71,26 @@ Adds the **composer** package  manager and the PHP Unit tests framework. Enter t
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** Open a CLI in the container and execute:
  <pre class="nje-cmd-one-line-sm-ident" style="--nje-ident: 60px;">phpunit --version		# Should return version of Phpunit</pre>
  <pre class="nje-cmd-one-line-sm-ident" style="--nje-ident: 60px; --nje-vmove: 5px;">composer -V		        # Should return version of Composer</pre>
+  </small>
+<br>
+
+3) **Create sub-container: Add Python front-end using pySide6 (Qt)**{: style="color:green; "} <br>
+Adds Python with PySide 6 (Qt Based to the container)
+Enter the sub directory ***./ApachePHPWebService*** and open a command prompt and use the following command
+<pre class="nje-cmd-one-line">docker  compose -f compose_python_frontend_addon.yml up -d  --remove-orphans --build --force-recreate  </pre>
+
+<span class="nje-ident"></span> *Expected results:*{: style="color: green;font-size:12px; "} 
+ <small>
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** Open a CLI in the container and execute:
+ <pre class="nje-cmd-one-line-sm-ident" style="--nje-ident: 60px;">python3 --version && pip3 show PySide6  # Should display Python and pyside information</pre>
+ </small>
  <br>
 
-<br><br>
 
-3) **Configure and start the sub container in Visual Studio Code (VSC)**{: style="color:green; "}<br>
+
+
+
+4) **Configure and start the sub container in Visual Studio Code (VSC)**{: style="color:green; "}<br>
 After this you should be able to open the container in VSC and start developing, you can do this local or by attaching to the container in VSC
 
 **VSC In the container**

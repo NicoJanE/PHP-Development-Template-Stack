@@ -136,25 +136,40 @@ docker  compose -f compose_UnitTest_Addon.yml up -d  --remove-orphans --build --
 ##### Results & running the sample app
 When this is done the following commands(in the container) should return the phpunit and composer versions 
 
-<small style="display: block; margin-left: 19px;margin-bottom: -20px; font-size: 13px; background-color: #ffffff; "><b><i>Expected installation results</i></b><br> <small>
+<small style="display: block; margin-left: 2px; font-size: 13px; background-color: #ffffff; "><b><i>Expected commands results</i></b><br> </small>
 <pre class="nje-cmd-multi-line">
 phpunit --version		# returns version phpunit
 composer -V			# returns vcersio composer
-#
 # In case the phpunit --version command returns not found, do this
 RUN echo 'export PATH="/root/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc \
     && . ~/.bashrc
 </pre>
 
-<small style="display: block; margin-left: 20px; font-size: 13px; background-color: #ffffff; "><b><i>Expected running Website</i></b><br> <small>
+
+
+<small style="display: block; margin-left: 2px; font-size: 13px; background-color: #ffffff; "><b><i>Expected running Website</i></b><br> </small>
 <small style="display: block; margin-bottom: 0px;margin-left: 0px; font-size: 14px; background-color: #f0f0f0; padding: 8px; border-radius: 4px;">
 &#9830; [http://localhost:8071/phpinfo.php](http://localhost:8071/phpinfo.php) <br>
 &#9830; [http://localhost:8071/index.php](http://localhost:8071/index.php)    
 </small> 
 
+<br>
 
+### 1.3 Create sub-container: Add Python front-end using pySide6 (Qt)
+Optional you can add the **Python** Qt based front-end **pySides6** to the image, after executing the commands in the previous paragraph execute  this command: ( again in the **[name]Service**  directory)  
+<br>
+<pre class="nje-cmd-one-line">
+docker  compose -f compose_python_frontend_addon.yml up -d  --remove-orphans --build --force-recreate 
+</pre>
+
+<small style="display: block; margin-left: 2px; font-size: 13px; background-color: #ffffff; "><b><i>Expected results</i></b><br> </small>
+<pre class="nje-cmd-multi-line">
+python3 --version && pip3 show PySide6  # Should display Python and pyside information
+</pre>
+</small> 
 
 <br>
+
 ## 2. Develop and debug in Visual Studio Code
 - Open VSC and press the docker Icon(left sidebar)
 - Right Click on your container and choose "Attache Visual Studio Code" a new VSC Window opens that is mapped the container
@@ -163,6 +178,7 @@ RUN echo 'export PATH="/root/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc \
 
 <hr>
 <br>
+
 ## Appendix 1 Create other template from this template.
 
 <details>  
