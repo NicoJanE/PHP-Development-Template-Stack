@@ -25,10 +25,16 @@ This is the quick setup for the ***PHP developer stack container*** consists of 
 
 
 
-### Setup steps
+### 1 Setup steps
+
 These are the quick setup steps for the ***PHP developer stack container***.
 If you have previously installed this (or a similar) container, you can use these setup step, otherwise please first read the main documentation page [howto_create_a_dev_container](Howtos/howto_create_a_dev_container.md).
 
+>**Consider Project setup and external network** <br>
+>If your application requires other independent Docker containers (such as a database), consider using an **external network**. This allows your Docker Compose setup to communicate with other standalone containers within the same network.
+For an example, see my document ***project-setup.md***, which covers this in detail. Additionally, my GitHub repository includes a section with specialized Docker templates, which I have named **Docker-Template-Plugin-Stacks**. (**todo soon**)
+
+<br>
 
 1) **Create docker base PHP container**{: style="color:green; "} <br>
 Enter the sub directory ***./ApachePHPWebService***. Open a command prompt and  use the following to create the basic docker base container, on which the sub-containers depends on

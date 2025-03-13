@@ -58,7 +58,7 @@ services:
 #
 #            - "D:\\Php\\Projects\\Mine\\Wiki-store\\project-php-app:/usr/local/apache2/htdocs"  # Bind mount the APP in htdocs which includes 'public'(is the www root)
 #            - ./app:/usr/local/apache2/htdocs                                      # Bind mount the APP in htdocs which includes 'public'(is the www root)  
-            - ./shared-host:/shared-host                                            # General Bind Mount for shared files between host <> container for backups and others
+            - ../../..shared-host:/shared-host                                      # General Bind Mount for shared files between host <> container for backups and others
         stdin_open: true                                                            # Keep STDIN open for `docker exec -it`
         tty: true
         command: ["/bin/bash", "/usr/local/apache2/start.sh"]                       # Run the custom script
@@ -69,16 +69,11 @@ services:
 
 # INSTRUCTIONS
 # To Start this container:
-# docker compose -f compose_apache_php_cont.yml.yml up -d
+#   docker compose -f compose_apache_php_cont.yml.yml up -d
 # Or
-#              # FORCE a rebuild when config props are changed to avoid caching issues!!!!
-# docker compose -f compose_apache_php_cont.yml up -d --build --force-recreate
+#     # FORCE a rebuild when config props are changed to avoid caching issues!!!!
+#   docker compose -f compose_apache_php_cont.yml up -d --build --force-recreate
 #
 # http://localhost:8071/
 # Document root 
 # - adjustments in:/usr/local/apache2/conf/extra/httpd-vhosts.conf
-#     Use this to set the new Symfony project root(Project/public)
-#   - Default Document root:/usr/local/apache2/htdocs
-# tip for second site enter the setting in httpd-vhosts.conf and add a alias
-#   Alias /test2 /usr/local/apache2/htdocs/test2/public
-# So you can rferences it like:  http://localhost:8071/test2

@@ -1,6 +1,7 @@
 
 
 # What
+
 This is a **Docker Template Stack container(DTS) for PHP projects**. It consists of:
 - Latest mainstream PHP version
   - including Symfony
@@ -9,11 +10,16 @@ This is a **Docker Template Stack container(DTS) for PHP projects**. It consists
 - Possibility to add Testing framework
 
 
-You can use this container to start programming in your local environment for development and testing purposes. For the rest of the documentation open the [main documentation page](https://nicojane.github.io/PHP-Development-Template-Stack/). Or the Quick Setup [here](https://nicojane.github.io/PHP-Development-Template-Stack/Howtos/quick-setup). Other DTS containers can be found [here](https://nicojane.github.io/Docker-Template-Stacks-Home/)
+## Setup and get started
 
-<sub> &nbsp;&nbsp;&nbsp;&nbsp; *Is this a local repository project? Then use this local link [main page](./index) file. <sub>
+You can use this container to start programming in your local environment for development and testing purposes.
+- For a **project setup** suggestion please see ***./Howtos/project-setup.md***. See: [local](./Howtos/project-setup.md)  or [remote](https://nicojane.github.io/PHP-Development-Template-Stack/Howtos/project-setup) here.
+- For a **quick setup see** ***./Howtos/quick-setup.md***. See: [local](./Howtos/quick-setup.md) or [remote](https://nicojane.github.io/PHP-Development-Template-Stack/Howtos/quick-setup) here.
+- For a **Full description see** ***./Howtos/howto_create_a_dev_container.md***. See [local](./Howtos/howto_create_a_dev_container.md) or [remote](https://nicojane.github.io/PHP-Development-Template-Stack/) here.
+
+ Other DTS containers can be found here: [remote](https://nicojane.github.io/Docker-Template-Stacks-Home/)
+
 <br><br>
-
 
 <details closed>  
   <summary class="clickable-summary">
