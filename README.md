@@ -16,6 +16,8 @@ You can use this container to start programming in your local environment for de
 - For a **project setup** suggestion please see ***./Howtos/project-setup.md***. See: [local](./Howtos/project-setup.md)  or [remote](https://nicojane.github.io/PHP-Development-Template-Stack/Howtos/project-setup) here.
 - For a **quick setup see** ***./Howtos/quick-setup.md***. See: [local](./Howtos/quick-setup.md) or [remote](https://nicojane.github.io/PHP-Development-Template-Stack/Howtos/quick-setup) here.
 - For a **Full description see** ***./Howtos/howto_create_a_dev_container.md***. See [local](./Howtos/howto_create_a_dev_container.md) or [remote](https://nicojane.github.io/PHP-Development-Template-Stack/) here.
+- You can use this template to describe your project setup, this can be particularly useful, when your project consist of multiple docker setup, and/or specific configuration settings.
+
 
  Other DTS containers can be found here: [remote](https://nicojane.github.io/Docker-Template-Stacks-Home/)
 
