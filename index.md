@@ -48,12 +48,6 @@ More documents can be found in the 'Howto" directory. it contains:
 5. Document root adjustments in: /usr/local/apache2/conf/extra/httpd-vhosts.conf
 <br>
 
-<details closed>  
-  <summary class="clickable-summary">
-  <span  class="summary-icon"></span> 
-  **Side note**: Personal maintenance instructions
-  </summary> 	<!-- On same line is failure, Don't indent the following Markdown lines!  -->
-  
 
 <!--
 <br><br><br>
