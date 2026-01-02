@@ -5,7 +5,7 @@ RefPages:
 --- 
 
 # PHP Development   <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker & Swarm Container</span>
-<span style="color: #409EFF; font-size: 0.95em; font-style: italic; margin-top: -30px; display: block;">Quick Setup Guide</span>
+<span style="color: #409EFF; font-size: 0.95em; font-style: italic; margin-top: -10px; display: block;">Quick Setup Guide</span>
 
 ![MIT License](https://img.shields.io/badge/License-MIT-green) ![Commercial Services Available](https://img.shields.io/badge/Services-Optional-blue)
 
