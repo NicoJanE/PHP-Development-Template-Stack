@@ -164,7 +164,7 @@ docker  compose -f compose_python_frontend_addon.yml up -d  --remove-orphans --b
 <pre class="nje-cmd-multi-line">
 python3 --version && pip3 show PySide6  # Should display Python and pyside information
 </pre>
-</small> 
+
 <br>
 
 ## 2. Develop and debug in Visual Studio Code
@@ -173,7 +173,8 @@ python3 --version && pip3 show PySide6  # Should display Python and pyside infor
 - Right Click on your container and choose "Attache Visual Studio Code" a new VSC Window opens that is mapped the container
 - Choose: Open folder and select the folder ***/usr/local/apache2/htdocs***
 - For debug installation/configuration see the howto file: [howto_steps_for_debugging](howto_steps_for_debugging)
-<hr><br>
+<br>
+<hr
 
 ## Appendix 1 Create other template from this template
 
@@ -216,7 +217,6 @@ webserver-nodejs-react:  # Change this ```<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb
 > **Make sure that Host port: 3002 is not used by any other docker container or other services on your host!**
 <br> <br>
 </details>
-<br>
 
 <span style="color: #6d757dff; font-size: 13px; font-style: italic;">
 <i><b>License</b><br>This file is part of: **PHP Development Template Stack**  Copyright (c) 2025-2026 Nico Jan Eelhart.This repository is [MIT licensed](../MIT-license.md) and free to use. For optional commercial support, customization, training, or long-term maintenance, see [COMMERCIAL.md](../COMMERCIAL.md).</i>
