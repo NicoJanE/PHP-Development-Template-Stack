@@ -7,19 +7,20 @@ RefPages:
  - howto_steps_for_debugging
 --- 
 
-<small>
-<br><br>
-_This file is part of: **PHP Development Template Stack**_
-_Copyright (c) 2024 Nico Jan Eelhart_
-_This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._
-</small>
-<br><br><br>
 
-# What
+# PHP Development   <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker & Swarm Container</span>
+<span style="color: #409EFF; font-size: 0.95em; font-style: italic; margin-top: -30px; display: block;"> Create a Swarm</span>
+
+![MIT License](https://img.shields.io/badge/License-MIT-green) ![Commercial Services Available](https://img.shields.io/badge/Services-Optional-blue)
+
+## Introduction
+
 This describes how to create a Docker Swarm of this PHP container. These instructions are intended for developers who wants to experiment and learn how to deal with a Docker Swarm. To create and use a development container see the document: [How to create a development container](howto_create_A_dev_container)
 
-## 1. Create Multipass docker VM infrastructure(X (5) VMs) and Initialize the Swarm.
+### 1. Create Multipass docker VM infrastructure(X (5) VMs) and Initialize the Swarm.
+
 We use Multipass for the different Virtual machines to hold the Docker Swarm.
+
 1. Make sure Multipass is installed, see: [Multipass](https://multipass.run/)
 1. ***command***: ***./CreateDockerNodes.ps*** to create the, entered number of multipass Nodes (let's assume 5)
 1. Get the IP from one of the nodes (multipass ls)
@@ -40,12 +41,15 @@ Related and used command'
 ----
 
 ## 2. Make & Publish an Image
+
 This step will create and image used for the service of the Swarm. We need to create it in the Docker registry so that it can be pulled later by the Swarm service.
 
-### 2.1 Create Image  
+### 2.1 Create Image
+
 In this sample we use the Python image defined in the directory:"PythonWebService" but you can also use another directory with other files.
 
 ***Assuming your in the root directory: PythonWebService ***
+
 1. Make sure a (basic) (PHP) application is available in \app
 2. a **Dockerfile_Apache_PHP_cont** file should be available
 3. ***command***: `docker build -t [yourname]/apachephpweb -f Dockerfile_Apache_PHP_cont .`
@@ -55,24 +59,28 @@ option add the `--no-cache` option to force  a rebuild
 4. ***command***: `docker images # it should be there`
 
 ### 2.2 Publish 
-You can skip this and use me image(eelhartn/apachephpweb) or continue, and create your own image to use that later on. 
+
+You can skip this and use me image(eelhartn/apachephpweb) or continue, and create your own image to use that later on.
 First publish it to the Docker Hub, this must be done so we can pull the image in the Multipass VM manager node(s).
+
 1. ***command***: `docker login` with your docker login
 2. ***command***: `docker image push [yourname]/apachephpweb`
 ***Be aware*** the image is ***public*** by default, to make it private go to the web interface!
-	
+
 ----
 
 ## 3. Use the Published Image to Deploy the Stack
+
 > *Note:*{: style="color: orange;font-size:13px; "}
 > <small>Stack is another term for compose in case of a Docker Swarm</small>
 <br>
 
 To deploy the stack we need to have the **PhpWebService\app** directory and the **PhpWebService\compose_apache_php_swarm.yml** available on the Nultipass virtual machine MANAGER nodes!
 Make sure the script `mountcopy.ps1` has run,  this will make sure  the app and shared files are available in:``` /home/ubuntu/src/ ``` at the node.
+
 1. Check that the key differences(required for a Swarm) in the compose_apache_php_swarm.yml are made, which are (should already be done):
-	- Most importantly there is NO **build** property but instead a **image** property that point to our image stored in the Docker hub
-	- Check also other non-Swarm required properties, so that those make sense: service name, command(start-up app), ports... <br><br>
+   - Most importantly there is NO **build** property but instead a **image** property that point to our image stored in the Docker hub
+   - Check also other non-Swarm required properties, so that those make sense: service name, command(start-up app), ports... <br><br>
 1. When you did **not skip 'Create image'**  you will need to change the image property in the file: ***compose_apache_php_swarm.yml*** so that it refers to your image!
 1. Login to docker Hub and make sure that the referenced image (compose_apache_python_swarm.yml) is public! 
 2. Execute the following commandos from the *directory:*<br> ***command***: ```cd /home/ubuntu/src/appname-service/``` from a manager VNode<br>***command***: `docker stack deploy -c compose_apache_php_swarm.yml MyWebApp` <br>
@@ -80,8 +88,9 @@ This will use the compose_apache_php_swarm.yml file to retrieve the deployed ima
 Checks:	<br>***command***: `docker stack ls`<br> ***command***: `docker stack ps MyWebApp`<br>      ***command***: `docker stack services MyWebApp`<br>***command***: `docker service logs [service name previous CMD] # In case of errors`<br><br>
 To Open a docker shell in the stack use
 ***command***: `docker ps								# Get the Container ID of (NOT from Master VNode! ?? use another admin node)`
-***command***: `docker exec -it [container ID] bash		# shell`<br><br>
-**Now try if your lucky** <br>
+***command***: `docker exec -it [container ID] bash		# shell`<br>
+**Now try if your lucky**
+
 - ***command***: `multipass ls # look for the IP addresses`<br>
 Then in your host browser enter: <br> 
 -- *\[a VM IP address]:8071\index.html*{: style="color: #2879d0; "} <br>
@@ -94,10 +103,14 @@ Then in your host browser enter: <br>
 ----
 
 ## 4. Test the installation
+
 Because our Swarm has some layers of complexity(host machine, VM's in the host, and a docker image in each VM, networking and others)
 we have to test the result in different stages
+
 ### 4.1 Inside a docker image contained in a VM, check running state
-Enter the docker Container
+
+Enter the docker Container:
+
 - Open a shell to a manager VM (**but not the master\leader!**)
 - **command**: ```docker ps``` 		# get the container ID
 - **command**: ```docker exec -it [container ID] bash```		# inside the docker running Apache and PHP
@@ -110,8 +123,11 @@ Now you can use the following command to check the state:
 - **command**: ```apt-get install curl```	# needed for next
 - **command**: ```curl -f http://localhost:80/index.html```	# should return page, note internal it's port 80 external 8071
 - **command**: ```curl -f http://localhost:80/phpinfo.php```	# should return page, note internal it's port 80 external 8071. if so **INSTALLATION OKAY**
+
 ### 4.2 In any docker image, tests
-Here we first need to install curl: 
+
+Here we first need to install curl:
+
 - **command**: curl -f http://localhost:8071/index.html || exit 1
 if the above command returns the html page Apache2 is working for HTML
 - **command**: curl -f http://localhost:8071/phpinfo.php || exit 1
@@ -120,12 +136,16 @@ If it returns value, PHP is **INSTALLATION OKAY** and reachable from the VM host
 if the above command returns the PHP page Apache2 is working for PHP. When this is the case the installation is okay, the only thing what can go wrong is the network connection between the VM and host
 **+++if the phpinfo.php work, and this not, there is an error in the PHP app or app setup+++** 
 - **command**: ping [IP host] If this fails the install is ok but you can not reach the host so web page will not be displayed on the host. While this is irritating I consider this outside the scope of this project
+
 ### 4.3 In the host, test accessibility  
+
 When a command like: [a VM IP address]:8071\index.html is not working in the host, the last ping command probably also failed. Again, while this is irritating I consider this outside the scope of this project. But any way here are some checks you could begin with:
+
 - **command**: Start a (host) browser and type any VNode *** IP-address:8071/index.html***		# this fails I guess otherwise you would not be here (for completeness it's here) 
 - **command**: ping a [VM IP addr]
 - Try the following Power-Shell script, make sure to enter a VM IP address:
-```
+
+``` ps1
 try {
 		$response = Invoke-WebRequest -Uri http://72.28.207.1:8071/index.html
 		Write-Output $response.Content
@@ -133,7 +153,9 @@ try {
 		Write-Output "Failed to connect"
 	}
 ```
+
 ### 4.4 Errors
+
 - The error 'Rejected' means most of the time that the image could not be found(misspell or private?? not logged in docker?) But be aware that the command: 'docker stack ps MyWebApp' could return old info, so also check if the Website runs!
 - Restart a Multipass VM node will reassign a new IP and break the swarm! (use Fixed IP, but how?) 
  <br>
@@ -145,4 +167,11 @@ try {
 - <small>No Dockerfile is used </small>
 - <small>The compose file has a few changes(because the dockerfile is not used) </small>
 - <small>More information see my [personal WIKI](http://pcne:8080/en/Personal/Docker/Create_A_Swarm) </small>
- 
+
+<br>
+<span style="color: #6d757dff; font-size: 13px; font-style: italic;">
+<i><b>License</b><br>This file is part of: **PHP Development Template Stack**  Copyright (c) 2025-2026 Nico Jan Eelhart.This repository is [MIT licensed](../MIT-license.md) and free to use. For optional commercial support, customization, training, or long-term maintenance, see [COMMERCIAL.md](../COMMERCIAL.md).</i>
+</span>
+
+<br><br>
+<p align="center">─── ✦ ───</p>

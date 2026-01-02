@@ -4,15 +4,15 @@ RefPages:
  - howto_create_a_dev_container
 --- 
 
-<small>
-<br>
-_This file is part of: **PHP Development Template Stack**_
-_Copyright (c) 2025 Nico Jan Eelhart_
-_This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._(_last update: 02 jan. 2025_)
-</small>
-<br><br>
+# PHP Development   <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker & Swarm Container</span>
+<span style="color: #409EFF; font-size: 0.95em; font-style: italic; margin-top: -30px; display: block;">Quick Setup Guide</span>
 
-# Quick Setup
+![MIT License](https://img.shields.io/badge/License-MIT-green) ![Commercial Services Available](https://img.shields.io/badge/Services-Optional-blue)
+
+
+## Introduction
+
+
 This is the quick setup for the ***PHP developer stack container*** consists of a **Base Container** and several **Sub Containers**. **The Base Container** is required for any **Sub Container**. The **Sub Containers** contain the development environments for the template application projects running on Linux.
 
 #### Available container
@@ -46,12 +46,12 @@ Enter the sub directory ***./ApachePHPWebService***. Open a command prompt and  
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** In docker a new service called: **apachephpwebservice**, <br>
  <span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span> &#176; Start it!
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071/phpinfo.php) page should display the **PHP info page**
- <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071) page should display the **PHP Symfony application(Website I)** <br>In case of an **error** you have to run `composer install` **first** from: **/htdocs/symfony-apps/wiki-store**
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071) page should display the **PHP Symfony application(Website I)** In case of an **error** you have to run `composer install` **first** from: **/htdocs/symfony-apps/wiki-store**
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** [This](http://localhost:8071/raw-app) page should display the **PHP Raw app (website II)**
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830;** The Apache2 **Document root** can be adjusted here: ***/usr/local/apache2/conf/extra/httpd-vhosts.conf***
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** Current **document root/source** at: ***/usr/local/apache2/htdocs/***
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** make sure it has the www-data owner and permissions `chown -R www-data ./htdocs` and `chmod -R 755 ./htdocs`
- <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** To start a Symfony project use: `symfony new projectname` and update the Document root to the public directory created, and set the www-data owner and permissions.
+ <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176;** To create a project use: `symfony new projectname` and set  the Document root to the public directory created, and set the www-data owner and permissions.
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span>**&#176; After that copy the `/usr/local/apache2/htdocs/.htaccess` file to the new public root directory (restart)
  <br><span class="nje-ident" style="--nje-number-of-spaces: 55px;"></span> &#176; a bind mount to that folder, local, can be found in the ./ApachePHPWebService/app/
  <br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"></span>**&#9830; A general bind mount folder, local, can be found at: ***/usr/local/ApachePHPWebService/shared-host*** Which is known at the server as: **/shared-host**
@@ -115,4 +115,11 @@ After this you should be able to open the container in VSC and start developing,
 <small>
 See the main documentation page [how to create a development container](howto_create_a_dev_container). Which explains the installation of the *Base Container* and any available *Sub Containers* in more details.
 </small>
+<br>
 
+<span style="color: #6d757dff; font-size: 13px; font-style: italic;">
+<i><b>License</b><br>This file is part of: **PHP Development Template Stack**  Copyright (c) 2025-2026 Nico Jan Eelhart.This repository is [MIT licensed](../MIT-license.md) and free to use. For optional commercial support, customization, training, or long-term maintenance, see [COMMERCIAL.md](../COMMERCIAL.md).</i>
+</span>
+
+<br><br>
+<p align="center">─── ✦ ───</p>
